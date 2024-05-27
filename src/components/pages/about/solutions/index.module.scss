@@ -1,0 +1,56 @@
+@use '@/styles/util' as *;
+
+.solutions {
+  :global .wrapper {
+    padding: rem(80) 0 rem(60);
+
+    @include break-up(laptopsmall) {
+      padding: rem(120) 0 rem(100);
+    }
+  }
+
+  h2 {
+    margin-bottom: rem(40);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(80);
+    }
+
+    span {
+      display: block;
+      font-family: var(--font-regular);
+    }
+  }
+
+  span {
+    color: $orange;
+  }
+
+  &__content {
+    @include break-up(laptopsmall) {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
+
+    p {
+      margin-bottom: rem(80);
+
+      @include break-up(laptopsmall) {
+        max-width: 40.6%;
+        width: 100%;
+        margin-bottom: 0;
+      }
+    }
+
+    figure {
+      border-radius: rem(12);
+      overflow: hidden;
+
+      @include break-up(laptopsmall) {
+        max-width: 50.9%;
+        width: 100%;
+      }
+    }
+  }
+}

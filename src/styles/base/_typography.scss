@@ -1,0 +1,210 @@
+//-------------------------------------
+//-- Core -----------------------------
+//-------------------------------------
+
+html {
+  font-size: 3.72vw;
+
+  @include break-up(tabletsmall) {
+    font-size: 2.77vw;
+  }
+
+  @include break-up(laptopsmall) {
+    font-size: 1.11vw;
+  }
+
+  // @include break-up(desktoplarge) {
+  //   font-size: 22px;
+  // }
+}
+
+//-------------------------------------
+//-- Headings -------------------------
+//-------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: 400;
+  font-family: var(--font-medium);
+  color: inherit;
+
+  @-moz-document url-prefix() {
+    font-weight: 500;
+  }
+
+  span {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+}
+
+h1,
+.h1 {
+  font-size: rem(47);
+  line-height: rem(51.7);
+  letter-spacing: rem(-0.94);
+
+  @include break-up(laptopsmall) {
+    font-size: rem(145);
+    line-height: rem(145);
+    letter-spacing: rem(-2.9);
+  }
+}
+
+h2,
+.h2 {
+  font-size: rem(47);
+  line-height: rem(51.7);
+  letter-spacing: rem(-0.94);
+
+  @include break-up(laptopsmall) {
+    font-size: rem(92);
+    line-height: rem(101.2);
+    letter-spacing: rem(-1.84);
+  }
+}
+
+h3 {
+  font-size: rem(24);
+  line-height: rem(26.4);
+  letter-spacing: rem(-0.48);
+
+  @include break-up(laptopsmall) {
+    font-size: rem(38);
+    line-height: rem(41.8);
+    letter-spacing: rem(-0.76);
+  }
+}
+
+//-------------------------------------
+//-- Paragraph ------------------------
+//-------------------------------------
+
+p,
+.p,
+input {
+  font-size: rem(15);
+  line-height: rem(16.5);
+  letter-spacing: rem(-0.3);
+  font-family: var(--font-roman);
+
+  @include break-up(laptopsmall) {
+    line-height: rem(19.5);
+    letter-spacing: normal;
+  }
+
+  a {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+}
+
+//-------------------------------------
+//-- Link -----------------------------
+//-------------------------------------
+
+a,
+button {
+  font-size: rem(13);
+  line-height: rem(15.6);
+  letter-spacing: normal;
+  font-family: var(--font-roman);
+  color: inherit;
+  cursor: pointer;
+}
+
+//-------------------------------------
+//-- Button ---------------------------
+//-------------------------------------
+
+// button {
+//   font-size: rem(15);
+//   line-height: rem(24);
+//   cursor: pointer;
+//   color: inherit;
+//   letter-spacing: normal;
+// }
+
+//-------------------------------------
+//-- utility classes ------------------
+//-------------------------------------
+
+.display {
+  font-size: rem(100);
+  line-height: rem(100);
+  letter-spacing: rem(-2);
+
+  @include break-up(laptopsmall) {
+    font-size: rem(200);
+    line-height: rem(200);
+    letter-spacing: rem(-4);
+  }
+}
+
+.xl {
+  font-size: rem(24);
+  line-height: rem(26.4);
+  letter-spacing: rem(-0.48);
+
+  @include break-up(laptopsmall) {
+    font-size: rem(38);
+    line-height: rem(41.8);
+    letter-spacing: rem(-0.76);
+  }
+}
+
+.l {
+  font-size: rem(15);
+  line-height: rem(19.5);
+  letter-spacing: normal;
+
+  @include break-up(laptopsmall) {
+    font-size: rem(21);
+    line-height: rem(23.1);
+  }
+}
+
+.s {
+  font-size: rem(12);
+  line-height: rem(15.6);
+  letter-spacing: normal;
+}
+
+.m {
+  font-size: rem(13);
+  line-height: rem(16.9);
+  letter-spacing: normal;
+}
+
+.caption {
+  font-size: rem(13);
+  line-height: rem(14.3);
+  letter-spacing: rem(-0.26);
+  text-transform: uppercase;
+  font-family: var(--font-medium);
+
+  @include break-up(laptopsmall) {
+    line-height: rem(24);
+    letter-spacing: normal;
+  }
+}
+
+.h1m {
+  @include break-down(tablet) {
+    font-size: rem(47);
+    line-height: rem(47);
+    letter-spacing: normal;
+  }
+}

@@ -1,0 +1,134 @@
+@use '@/styles/util' as *;
+
+.mega-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  max-height: 100vh;
+  background-color: $black;
+  border-radius: 0 0 rem(8) rem(8);
+  overflow: hidden scroll;
+  z-index: -1;
+  color: $white;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  // &.active {
+  //   height: auto;
+  // }
+
+  :global .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 19.3vh 0 rem(24);
+
+    @include break-up(laptopsmall) {
+      position: relative;
+      padding: 15.5vh 0 rem(24);
+    }
+
+    > p {
+      margin: 8.4vh auto 0;
+
+      @include break-up(laptopsmall) {
+        position: absolute;
+        left: 50%;
+        bottom: rem(24);
+        transform: translateX(-50%);
+        margin: 0;
+      }
+    }
+  }
+
+  &__nav {
+    max-width: 100%;
+    width: 100%;
+    margin-bottom: rem(40);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: 14.2vh;
+    }
+
+    ul {
+      margin-top: rem(-16);
+
+      &:hover {
+        li {
+          p,
+          span:first-of-type,
+          span:last-of-type {
+            opacity: 0.3;
+          }
+        }
+      }
+    }
+
+    li {
+      position: relative;
+
+      :global {
+        .hover,
+        .active {
+          &::after {
+            left: 0;
+            right: unset;
+            width: 100%;
+          }
+
+          > span {
+            &:first-of-type {
+              p {
+                transform: translateY(-100%);
+
+                &:last-of-type {
+                  transform: translateY(-98%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__socials,
+  &__legal {
+    ul {
+      @include break-up(laptopsmall) {
+        display: flex;
+        align-items: center;
+        gap: rem(24);
+      }
+    }
+
+    li {
+      @include break-down(tablet) {
+        &:not(:last-of-type) {
+          margin-bottom: rem(8);
+        }
+      }
+    }
+  }
+
+  &__socials {
+    max-width: 50%;
+    width: 100%;
+  }
+
+  &__legal {
+    max-width: 50%;
+    width: 100%;
+    text-align: right;
+
+    ul {
+      justify-content: flex-end;
+    }
+  }
+}

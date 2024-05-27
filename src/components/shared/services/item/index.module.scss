@@ -1,0 +1,47 @@
+@use '@/styles/util' as *;
+
+.services-item {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  height: 100dvh;
+  padding: rem(32) 0;
+  z-index: 1;
+
+  > h2 {
+    position: absolute;
+    top: 0;
+    left: rem(40);
+    width: 100%;
+    padding-top: rem(24);
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(40);
+    }
+
+    > span {
+      &:last-of-type {
+        @include break-up(laptopsmall) {
+          font-size: rem(84);
+          line-height: rem(84);
+          letter-spacing: rem(-1.68);
+        }
+      }
+    }
+  }
+
+  figure {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100vw;
+    height: 100%;
+    transform: translateX(-50%);
+    z-index: -1;
+
+    picture {
+      height: 100%;
+    }
+  }
+}

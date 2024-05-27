@@ -1,0 +1,43 @@
+@use '@/styles/util' as *;
+
+.label {
+  position: relative;
+  display: block;
+
+  p {
+    margin-bottom: rem(16);
+    font-family: var(--font-medium);
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    padding: rem(24);
+    border-radius: rem(8);
+    border: rem(1) solid rgba($black, 0.3);
+    letter-spacing: normal;
+    background-color: transparent !important;
+    appearance: none;
+
+    @include break-up(laptopsmall) {
+      padding: rem(32) rem(24);
+    }
+
+    &::placeholder {
+    }
+
+    &:focus {
+      & + span {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: calc(100% + #{rem(8)});
+    left: 0;
+    color: red;
+  }
+}

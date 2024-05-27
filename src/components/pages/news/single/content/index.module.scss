@@ -1,0 +1,43 @@
+@use '@/styles/util' as *;
+
+.content {
+  background-color: #fff;
+
+  :global .wrapper {
+    padding: rem(80) 0 rem(40);
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(112);
+      max-width: rem(898);
+    }
+  }
+
+  &__data {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-family: var(--font-roman);
+      margin-bottom: rem(40);
+    }
+
+    p {
+      white-space: pre-line;
+    }
+
+    figure {
+      width: 100%;
+      height: auto;
+      margin: rem(80) 0 rem(40);
+      border-radius: rem(8);
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

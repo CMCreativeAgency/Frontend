@@ -1,0 +1,79 @@
+@use '@/styles/util' as *;
+
+.hero {
+  background-color: #fff;
+
+  :global .wrapper {
+    padding: rem(164) 0 0;
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(232);
+    }
+
+    > button {
+      @include break-up(laptopsmall) {
+        display: block;
+        transform: translateY(100%);
+      }
+    }
+  }
+
+  h1 {
+    @include break-up(laptopsmall) {
+      text-align: right;
+    }
+
+    span {
+      color: $orange;
+      font-family: var(--font-regular);
+
+      @include break-up(laptopsmall) {
+        display: block;
+        text-align: left;
+      }
+    }
+  }
+
+  &__categories {
+    display: flex;
+    gap: rem(8);
+    z-index: 1;
+
+    @include break-down(tablet) {
+      position: absolute;
+      left: 0;
+      bottom: calc(100% + #{rem(24)});
+    }
+
+    button {
+      padding: rem(10) rem(20);
+      border-radius: rem(40);
+      background-color: rgba($black, 0.05);
+      color: $black;
+      cursor: default;
+    }
+  }
+
+  &__content {
+    position: relative;
+    margin-top: rem(137);
+    margin-bottom: rem(75);
+
+    @include break-up(laptopsmall) {
+      margin-top: 0;
+      margin-bottom: rem(80);
+    }
+  }
+
+  &__info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: rem(24);
+
+    @include break-up(laptopsmall) {
+      align-items: center;
+      margin-top: rem(40);
+    }
+  }
+}

@@ -1,0 +1,28 @@
+@use '@/styles/util' as *;
+
+.scrolling-text {
+  position: relative;
+  display: inline-flex;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  transform-origin: center center;
+  overflow: hidden;
+
+  h2 {
+    white-space: nowrap;
+    pointer-events: none;
+    border-left: rem(30) solid transparent;
+    border-right: rem(30) solid transparent;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    will-change: transform;
+    font-kerning: none;
+    backface-visibility: hidden;
+    text-rendering: optimizeSpeed;
+    -webkit-text-rendering: optimizeSpeed;
+  }
+}

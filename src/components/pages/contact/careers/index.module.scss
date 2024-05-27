@@ -1,0 +1,43 @@
+@use '@/styles/util' as *;
+
+.careers {
+  background-color: $black;
+  color: #fff;
+
+  :global .wrapper {
+    padding: rem(40) 0 rem(120);
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(100);
+    }
+  }
+
+  h2 {
+    margin-bottom: rem(40);
+
+    @include break-up(laptopsmall) {
+      max-width: 50%;
+      margin-bottom: rem(110);
+    }
+
+    span {
+      display: block;
+      color: $orange;
+      font-family: var(--font-regular);
+    }
+  }
+
+  &__content {
+    max-width: rem(356);
+
+    @include break-up(laptopsmall) {
+      max-width: rem(567);
+      margin-left: auto;
+      margin-right: rem(63);
+    }
+
+    p {
+      margin-bottom: rem(8);
+    }
+  }
+}

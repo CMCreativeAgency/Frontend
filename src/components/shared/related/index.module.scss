@@ -1,0 +1,52 @@
+@use '@/styles/util' as *;
+
+.related {
+  &-dark {
+    @extend.related;
+    background-color: $black;
+    color: #fff;
+  }
+
+  &-light {
+    @extend.related;
+    background-color: #fff;
+    color: $black;
+  }
+
+  :global .wrapper {
+    padding: rem(40) 0;
+
+    @include break-up(laptopsmall) {
+      padding: rem(80) 0;
+    }
+  }
+
+  h2 {
+    margin: rem(80) 0 rem(24);
+    text-align: center;
+
+    @include break-up(laptopsmall) {
+      margin: rem(200) 0 rem(80);
+      text-align: left;
+    }
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    text-align: left;
+
+    @include break-up(laptopsmall) {
+      max-width: rem(438);
+      margin-left: auto;
+      margin-right: rem(230);
+    }
+
+    &:hover {
+      picture {
+        transform: scale(1.05);
+      }
+    }
+  
+  }
+}

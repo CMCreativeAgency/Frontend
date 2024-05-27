@@ -1,0 +1,67 @@
+@use '@/styles/util' as *;
+
+.hero {
+  background-color: #fff;
+
+  :global .wrapper {
+    padding: rem(164) 0 rem(60);
+
+    @include break-up(laptopsmall) {
+      padding: rem(232) 0 rem(100);
+    }
+  }
+
+  h1 {
+    span {
+      display: block;
+
+      @include break-up(laptopsmall) {
+        display: inline-block;
+      }
+
+      &:nth-of-type(1) {
+        @include break-down(tablet) {
+          text-align: right;
+        }
+      }
+    }
+
+    :global .lines-wrapper {
+      &:nth-of-type(2) {
+        @include break-up(laptopsmall) {
+          display: block !important;
+          text-align: right !important;
+        }
+      }
+    }
+
+    :global .orange {
+      font-family: var(--font-regular);
+
+      @include break-up(laptopsmall) {
+        display: block;
+        text-align: right;
+      }
+    }
+  }
+
+  p {
+    margin: rem(40) 0 rem(80);
+
+    @include break-up(laptopsmall) {
+      max-width: rem(333);
+      margin: rem(75) 0 rem(82) rem(115);
+    }
+  }
+
+  h2 {
+    @include break-up(laptopsmall) {
+      max-width: rem(640);
+      margin-left: auto;
+    }
+
+    span {
+      color: $orange;
+    }
+  }
+}

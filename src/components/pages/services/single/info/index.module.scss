@@ -1,0 +1,131 @@
+@use '@/styles/util' as *;
+
+.info {
+  position: relative;
+  min-height: 100dvh;
+
+  figure {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100dvh;
+
+    picture {
+      height: 100%;
+    }
+  }
+
+  :global .wrapper {
+    // position: relative;
+    // z-index: 1;
+  }
+
+  &__nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    > div {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100dvh;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: rem(40);
+
+      @include break-up(laptopsmall) {
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: rem(40);
+      }
+
+      > span {
+        position: relative;
+        display: block;
+        max-width: rem(206);
+        width: rem(206);
+        height: rem(1);
+        background-color: rgba($white, 0.24);
+        z-index: 2;
+
+        @include break-up(laptopsmall) {
+          height: rem(208);
+          width: rem(1);
+        }
+
+        > span {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          background-color: $white;
+        }
+      }
+    }
+  }
+
+  &__items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 rem(24);
+
+    ul {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    li {
+      height: 100dvh;
+      text-align: center;
+
+      &:not(:first-of-type) {
+        height: 0;
+      }
+
+      > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100dvh;
+        overflow: hidden;
+        // opacity: 0;
+      }
+
+      &:first-of-type {
+        > div {
+          opacity: 1;
+        }
+      }
+
+      :global .lines-wrapper {
+        overflow: hidden;
+      }
+    }
+
+    h2 {
+      span {
+        font-family: var(--font-regular);
+      }
+    }
+
+    p {
+      max-width: rem(448);
+      margin: 0 auto;
+    }
+  }
+}

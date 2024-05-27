@@ -1,0 +1,111 @@
+@use '@/styles/util' as *;
+
+.video {
+  position: relative;
+
+  :global .play {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  video {
+    width: 100%;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.3s ease;
+  }
+
+  // button {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   width: rem(52);
+  //   height: rem(52);
+  //   border-radius: 50%;
+  //   background-color: rgba($white, 0.3);
+  //   transition: 0.3s ease;
+
+  //   &:hover {
+  //     transform: translate(-50%, -50%) scale(1.05);
+  //   }
+
+  //   &:active {
+  //     transform: translate(-50%, -50%) scale(0.95);
+  //   }
+
+  //   span {
+  //     display: flex;
+  //     width: rem(24);
+  //     height: rem(20);
+  //   }
+  // }
+
+  &__controls {
+    position: absolute;
+    top: rem(22);
+    right: rem(22);
+    display: flex;
+    align-items: center;
+    gap: rem(12);
+
+    @include break-up(laptopsmall) {
+      top: unset;
+      right: rem(30);
+      bottom: rem(30);
+    }
+
+    button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: rem(80);
+      height: rem(80);
+      border-radius: 50%;
+      z-index: 1;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        transform: translate(-50%, -50%);
+        background: rgba($white, 0.7);
+        -webkit-backdrop-filter: blur(rem(7.5));
+        backdrop-filter: blur(rem(7.5));
+        z-index: -1;
+        transition: .4s ease;
+      }
+
+      &:hover {
+        &::before {
+          transform: translate(-50%, -50%) scale(1.05);
+        }
+      }
+
+      &:active {
+        &::before {
+          transform: translate(-50%, -50%) scale(0.95);
+        }
+      }
+
+      svg {
+        width: rem(24);
+        height: rem(24);
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+@use '@/styles/util' as *;
+
+.projects {
+  :global .wrapper {
+    padding: rem(40) 0 rem(120);
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(80);
+    }
+  }
+
+  &__content {
+    margin-bottom: rem(80);
+    text-align: center;
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(120);
+    }
+
+    h2 {
+      margin-bottom: rem(40);
+
+      span {
+        font-family: var(--font-regular);
+        color: $orange;
+      }
+    }
+
+    p {
+      @include break-up(laptopsmall) {
+        max-width: rem(337);
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__items {
+    text-align: center;
+
+    ul {
+      margin: rem(-12) rem(-12) rem(44);
+      text-align: left;
+
+      @include break-up(tablet) {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: rem(68);
+      }
+    }
+
+    li {
+      padding: rem(12);
+      will-change: transform;
+
+      @include break-up(tablet) {
+        max-width: 50%;
+        width: 100%;
+      }
+
+      a {
+        display: block;
+      }
+    }
+  }
+}

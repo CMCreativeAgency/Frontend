@@ -1,0 +1,93 @@
+@use '@/styles/util' as *;
+
+.cta {
+  overflow: hidden;
+
+  &-dark {
+    @extend .cta;
+    background-color: $black;
+    color: #fff;
+  }
+
+  &-light {
+    @extend .cta;
+    background-color: #fff;
+  }
+
+  :global .wrapper {
+    padding: rem(140) 0 rem(200);
+
+    @include break-up(laptopsmall) {
+      padding: rem(200) 0 rem(120);
+    }
+  }
+
+  &__content {
+    position: relative;
+
+    > h2 {
+      position: relative;
+      margin-bottom: rem(40);
+      z-index: 1;
+
+      span {
+        display: block;
+        margin-bottom: rem(161);
+        font-family: var(--font-regular);
+
+        @include break-up(laptopsmall) {
+          margin-bottom: rem(416);
+        }
+      }
+    }
+
+    p {
+      white-space: pre-line;
+
+      @include break-up(laptopsmall) {
+        max-width: rem(369);
+        margin: 0 auto;
+      }
+    }
+
+    > h2,
+    p {
+      mix-blend-mode: difference;
+      color: #fff;
+    }
+  }
+
+  &__scrolling {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+    width: rem(148);
+    height: rem(148);
+    border-radius: 50%;
+    background-color: $black;
+    z-index: 1;
+
+    h2 {
+      color: $white;
+      border-left-width: rem(12) !important;
+      border-right-width: rem(12) !important;
+    }
+  }
+
+  &__logo {
+    position: absolute;
+    top: rem(12);
+    left: 50%;
+    transform: translateX(-50%) rotate(-13.4deg);
+    width: rem(525);
+    z-index: 0;
+
+    @include break-up(laptopsmall) {
+      top: rem(55);
+      width: rem(1342);
+    }
+  }
+}

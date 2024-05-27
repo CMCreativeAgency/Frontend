@@ -1,0 +1,141 @@
+@use '@/styles/util' as *;
+
+.cta {
+  background: #fff;
+
+  :global .wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100dvh;
+    padding: rem(100) 0 rem(40);
+
+    @include break-up(laptopsmall) {
+      justify-content: flex-end;
+    }
+
+    > h2 {
+      text-align: center;
+
+      span {
+        font-family: var(--font-regular);
+      }
+    }
+
+    > a {
+      @include break-up(laptopsmall) {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        
+        h2 {
+          text-align: center;
+
+          span {
+            font-family: var(--font-regular);
+          }
+        }
+      }
+    }
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    width: rem(220);
+    height: rem(220);
+    margin: 0 auto;
+    background-color: $black;
+    border-radius: 50%;
+    overflow: hidden;
+    color: $white;
+
+    > div {
+      // left: 0;
+
+      h2 {
+        border-left-width: rem(16);
+        border-right-width: rem(16);
+
+        &:nth-of-type(even) {
+          color: $orange;
+          font-family: var(--font-regular);
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 50%;
+          right: rem(-20);
+          transform: translateY(-50%);
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background-color: $white;
+        }
+      }
+    }
+  }
+
+  &__info {
+    display: flex;
+
+    @include break-down(tablet) {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    @include break-up(laptopsmall) {
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-top: rem(24);
+      border-top: rem(1) solid rgba($black, 0.24);
+    }
+
+    > p {
+      max-width: 100%;
+      width: 100%;
+
+      @include break-down(tablet) {
+        text-align: center;
+        margin-bottom: rem(16);
+        padding-bottom: rem(16);
+        border-bottom: rem(1) solid rgba($black, 0.24);
+      }
+
+      @include break-up(laptopsmall) {
+        max-width: rem(520);
+      }
+    }
+
+    ul {
+      text-align: right;
+
+      @include break-up(laptopsmall) {
+        display: flex;
+        align-items: center;
+        gap: rem(24);
+      }
+    }
+
+    li {
+      @include break-down(tablet) {
+        &:not(:last-of-type) {
+          margin-bottom: rem(10);
+        }
+      }
+    }
+  }
+
+  &__email {
+    p {
+      margin-bottom: rem(2);
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@use '@/styles/util' as *;
+
+.list-items {
+  ul {
+    margin: rem(-12);
+
+    @include break-up(tablet) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  li {
+    padding: rem(12);
+
+    @include break-up(tablet) {
+      max-width: 50%;
+      width: 100%;
+    }
+  }
+
+  a {
+    display: block;
+  }
+}

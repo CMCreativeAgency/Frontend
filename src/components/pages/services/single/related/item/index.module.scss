@@ -1,0 +1,50 @@
+@use '@/styles/util' as *;
+
+.related-item {
+  @include break-up(laptopsmall) {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  figure {
+    margin-bottom: rem(16);
+    border-radius: rem(8);
+    overflow: hidden;
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(22);
+      order: 2;
+    }
+
+    picture {
+      transition: 0.4s ease;
+    }
+  }
+
+  h3 {
+    margin-bottom: rem(24);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(8);
+      order: 1;
+    }
+  }
+
+  &__line {
+    display: block;
+    width: 100%;
+    height: rem(1);
+    background-color: rgba($white, 0.24);
+
+    @include break-up(laptopsmall) {
+      order: 3;
+    }
+
+    span {
+      display: block;
+      width: 0;
+      height: rem(1);
+      background-color: $orange;
+    }
+  }
+}

@@ -1,0 +1,73 @@
+@use '@/styles/util' as *;
+
+.strategy {
+  :global .wrapper {
+    padding: rem(48) 0 rem(40);
+
+    @include break-up(laptopsmall) {
+      padding: rem(80) 0 rem(120);
+    }
+
+    > span {
+      max-width: 100%;
+      width: 100%;
+      margin-top: rem(80);
+
+      @include break-up(laptopsmall) {
+        margin-top: rem(140);
+      }
+    }
+  }
+
+  h2 {
+    margin-bottom: rem(40);
+    // text-indent: rem(114);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(80);
+      // text-indent: rem(320);
+    }
+
+    :global .lines-wrapper {
+      display: block !important;
+
+      &:first-of-type {
+        text-align: right !important;
+      }
+    }
+
+    span {
+      font-family: var(--font-regular);
+      color: $orange;
+    }
+  }
+
+  p {
+    max-width: rem(425);
+
+    @include break-up(laptopsmall) {
+      margin-left: auto;
+      margin-right: rem(129);
+    }
+  }
+
+  // &__line {
+  //   position: relative;
+  //   display: block;
+  //   width: 100%;
+  //   height: rem(1);
+  //   margin-top: rem(80);
+  //   background-color: rgba($white, 0.24);
+
+  //   &::after {
+  //     content: '';
+  //     display: block;
+  //     position: absolute;
+  //     left: 0;
+  //     bottom: 0;
+  //     width: 30%;
+  //     height: rem(1);
+  //     background-color: $orange;
+  //   }
+  // }
+}

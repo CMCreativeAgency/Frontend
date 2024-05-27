@@ -1,0 +1,26 @@
+@use '@/styles/util' as *;
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 101;
+  color: $orange;
+  background-color: $black;
+  // mix-blend-mode: difference;
+
+  > span {
+    display: inline-block;
+    padding: rem(20) 0;
+    overflow: hidden;
+  }
+
+  span {
+    display: inline-block;
+  }
+}

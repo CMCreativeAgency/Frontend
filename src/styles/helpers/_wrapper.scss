@@ -1,0 +1,9 @@
+.wrapper {
+  max-width: calc(100% - #{rem(48)});
+  width: 100%;
+  margin: 0 auto;
+
+  @include break-up(laptopsmall) {
+    max-width: calc(100% - #{rem(80)});
+  }
+}

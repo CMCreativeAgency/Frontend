@@ -1,0 +1,50 @@
+@use '@/styles/util' as *;
+
+.hero {
+  background-color: $black;
+
+  :global .wrapper {
+    padding: rem(164) 0 rem(40);
+
+    @include break-up(laptopsmall) {
+      padding: rem(232) 0 rem(80);
+    }
+  }
+
+  h1 {
+    margin-bottom: rem(40);
+
+    span {
+      display: block;
+      padding-right: rem(24);
+      color: $orange;
+      font-family: var(--font-regular);
+      text-align: right;
+
+      @include break-up(tablet) {
+        padding-right: rem(174);
+      }
+
+      @include break-up(laptopsmall) {
+        padding-right: rem(258);
+      }
+    }
+
+    :global .lines-wrapper {
+      display: block !important;
+      
+      &:nth-of-type(2) {
+        text-align: right !important;
+      }
+    }
+  }
+
+  p {
+    max-width: rem(360);
+
+    @include break-up(laptopsmall) {
+      margin-top: rem(-140);
+      margin-left: rem(110);
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@use '@/styles/util' as *;
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+
+  & * {
+    pointer-events: none;
+  }
+
+  &__text {
+    display: inline-block;
+    transition: 0.4s ease;
+  }
+
+  &__brackets {
+    @extend .button;
+    position: relative;
+    text-transform: uppercase;
+
+    > span {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    &:before,
+    &:after {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-block;
+      transition: 0.4s ease;
+    }
+
+    &::before {
+      content: '(';
+      right: 100%;
+    }
+
+    &::after {
+      content: ')';
+      left: 100%;
+    }
+
+    .button__text {
+      &:nth-of-type(2) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+
+    &:hover {
+      &::before {
+        right: calc(100% + #{rem(2)});
+      }
+      &::after {
+        left: calc(100% + #{rem(2)});
+      }
+      .button__text {
+        transform: translateY(-100%);
+      }
+    }
+  }
+}

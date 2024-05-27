@@ -1,0 +1,74 @@
+@use '@/styles/util' as *;
+
+.hero {
+  position: relative;
+  overflow: hidden;
+
+  :global .wrapper {
+    height: 100dvh;
+    padding-top: 37.7vh;
+    text-align: center;
+
+    @include break-up(laptopsmall) {
+      min-height: rem(900);
+      max-width: rem(1178);
+      padding-top: 21dvh;
+    }
+  }
+
+  h1 {
+    margin-bottom: rem(83);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: 8.9vh;
+    }
+
+    span {
+      font-family: var(--font-regular);
+    }
+  }
+
+  p {
+    max-width: rem(261);
+    margin: 0 auto;
+
+    @include break-up(laptopsmall) {
+      margin: 0 0 0 rem(24);
+      text-align: left;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    width: rem(962);
+    transform: translate(-50%, -50%) rotate(-21deg);
+    z-index: -1;
+    will-change: transform;
+    backface-visibility: hidden;
+
+    @include break-up(laptopsmall) {
+      width: rem(1430);
+      top: unset;
+      left: unset;
+      right: rem(-339);
+      bottom: rem(-122);
+      transform: rotate(-21deg);
+    }
+  }
+
+  &__video {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    pointer-events: none;
+
+    video {
+      height: 100%;
+    }
+  }
+}

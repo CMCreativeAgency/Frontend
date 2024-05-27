@@ -1,0 +1,46 @@
+@use '@/styles/util' as *;
+
+.project-item {
+  position: relative;
+  border-radius: rem(8);
+  overflow: hidden;
+
+  &:hover {
+    figure {
+      &::before {
+        opacity: 1;
+      }
+
+      picture {
+        transform: scale(1.04);
+      }
+    }
+
+    h3 {
+      transform: translateY(0);
+    }
+  }
+
+  figure {
+    &::before {
+      opacity: 0;
+      transition: 0.4s ease;
+    }
+
+    picture {
+      transition: 0.4s ease;
+    }
+  }
+
+  h3 {
+    position: absolute;
+    left: rem(32);
+    bottom: rem(24);
+    z-index: 1;
+
+    @include break-up(laptopsmall) {
+      transform: translateY(200%);
+      transition: .4s ease;
+    }
+  }
+}

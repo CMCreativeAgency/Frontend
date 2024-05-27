@@ -1,0 +1,63 @@
+@use '@/styles/util' as *;
+
+.history {
+  background: #fff;
+  
+  :global .wrapper {
+    padding: rem(60) 0 rem(120);
+
+    @include break-up(laptopsmall) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: rem(100) 0 rem(200);
+    }
+  }
+
+  h2 {
+    margin-bottom: rem(40);
+
+    @include break-up(laptopsmall) {
+      max-width: 100%;
+      width: 100%;
+      margin-bottom: rem(95);
+    }
+
+    span {
+      color: $orange;
+      font-family: var(--font-regular);
+
+      @include break-up(laptopsmall) {
+        display: block;
+      }
+    }
+  }
+
+  &__image {
+    display: block;
+    margin-bottom: rem(40);
+
+    @include break-up(laptopsmall) {
+      max-width: 33%;
+      width: 100%;
+      margin-left: rem(48);
+      margin-bottom: 0;
+    }
+  }
+
+  &__content {
+    @include break-up(laptopsmall) {
+      max-width: 48.7%;
+      width: 100%;
+    }
+
+    h3 {
+      margin-bottom: rem(40);
+    }
+
+    p {
+      max-width: rem(455);
+      white-space: pre-line;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+@use '@/styles/util' as *;
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: rem(8);
+
+  &.error {
+    .border {
+      border-color: red;
+      opacity: 1;
+    }
+  }
+
+  p {
+    &:first-of-type {
+      font-weight: 500;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  input {
+    display: none;
+    width: 100%;
+    appearance: none;
+
+    &::placeholder {
+      color: rgba($black, 0.6);
+    }
+
+    &:checked {
+      & + span {
+        background-color: $black;
+      }
+    }
+
+    & + span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: rem(13);
+      width: 100%;
+      height: rem(13);
+      border-radius: rem(2);
+      border: rem(1) solid $black;
+      background-color: #fff;
+    }
+  }
+
+  &__error {
+    position: absolute;
+    top: calc(100% + #{rem(8)});
+    left: 0;
+    color: red;
+  }
+}

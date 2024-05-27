@@ -1,0 +1,17 @@
+// define color classes
+@each $color, $hex in $colors {
+  .#{$color} {
+    color: $hex !important;
+  }
+
+  .bg-#{$color} {
+    background-color: $hex !important;
+  }
+}
+
+// define opacity classes
+@each $name, $opacity in $opacities {
+  .#{$name} {
+    opacity: $opacity;
+  }
+}

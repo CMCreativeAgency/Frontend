@@ -1,0 +1,13 @@
+@use '@/styles/util' as *;
+
+.list {
+  background-color: #fff;
+  
+  :global .wrapper {
+    padding: rem(40) 0;
+
+    @include break-up(laptopsmall) {
+      padding: rem(80) 0 rem(120);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+//-------------------------------------
+//-- Fonts Mixin ----------------------
+//-------------------------------------
+// $fontLocation: '/fonts/';
+
+// @mixin font-face($name) {
+//   @font-face {
+//     font-family: '#{$name}';
+//     src: url('#{$fontLocation+$name}.woff2') format('woff2'),
+//       url('#{$fontLocation+$name}.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+//     font-display: swap;
+//   }
+// }
+
+//-------------------------------------
+//-- Font Variables -------------------
+//-------------------------------------
+// $font-regular: var(--font-regular);
+// $font-general: var(--font-general);

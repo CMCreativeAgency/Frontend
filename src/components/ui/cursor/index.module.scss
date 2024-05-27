@@ -1,0 +1,138 @@
+@use '@/styles/util' as *;
+
+.cursor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: rem(100);
+  height: rem(100);
+  opacity: 0;
+  z-index: 1000;
+  pointer-events: none;
+  text-transform: uppercase;
+
+  > span {
+    transition: opacity 0.4s ease;
+  }
+
+  &.arrow {
+    path {
+      stroke: $black;
+    }
+  }
+
+  &.arrow,
+  &.arrow-dark,
+  &.drag,
+  &.marquee,
+  &.external,
+  &.text {
+    > span {
+      opacity: 1;
+    }
+  }
+
+  &-arrow,
+  &-arrow-dark,
+  &-external {
+    opacity: 0;
+
+    svg {
+      width: rem(14);
+      height: rem(14);
+    }
+  }
+
+  &-arrow-dark {
+    color: #fff;
+  }
+
+  &-drag {
+    opacity: 0;
+
+    svg {
+      width: rem(45);
+      height: rem(24);
+    }
+  }
+
+  &-marquee {
+    opacity: 0;
+  }
+
+  &-text {
+    opacity: 0;
+    color: #fff;
+  }
+}
+
+.cursor-outer {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: rem(100);
+  height: rem(100);
+  transform: scale(0.3);
+  z-index: 999;
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: #fff;
+  backface-visibility: hidden;
+  mix-blend-mode: difference;
+  // overflow: hidden;
+  // backdrop-filter: blur(rem(5));
+
+  &.arrow,
+  &.drag,
+  &.marquee,
+  &.external,
+  &.arrow-dark {
+    mix-blend-mode: normal;
+  }
+
+  &.text {
+    font-size: rem(8);
+    line-height: rem(16.5);
+  }
+
+  &.marquee {
+    color: #fff;
+
+    > div {
+      mix-blend-mode: difference;
+    }
+
+    h2 {
+      font-size: rem(8);
+      line-height: rem(16.5);
+      text-transform: uppercase;
+      border-left-width: rem(6);
+      border-right-width: rem(6);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 48%;
+        left: calc(100% + #{rem(5)});
+        transform: translateY(-50%);
+        display: block;
+        width: 2px;
+        height: 2px;
+        border-radius: 50%;
+        background-color: currentColor;
+      }
+    }
+  }
+}
+
+.cursor,
+.cursor-outer {
+  @include break-down(tablet) {
+    display: none;
+  }
+}

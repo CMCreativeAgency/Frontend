@@ -1,0 +1,43 @@
+@use '@/styles/util' as *;
+
+.services {
+  background-color: $black;
+
+  :global .wrapper {
+    padding: rem(40) 0;
+
+    @include break-up(laptopsmall) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  }
+
+  ul {
+    margin: rem(24) 0 rem(80);
+
+    @include break-up(laptopsmall) {
+      max-width: 49.2%;
+      width: 100%;
+      margin: 0;
+    }
+  }
+
+  li {
+    &:not(:last-of-type) {
+      margin-bottom: rem(4);
+    }
+  }
+
+  figure {
+    max-width: 100%;
+    width: 100%;
+    border-radius: rem(8);
+    overflow: hidden;
+
+    @include break-up(laptopsmall) {
+      margin-top: rem(120);
+      
+    }
+  }
+}

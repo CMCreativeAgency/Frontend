@@ -1,0 +1,44 @@
+@use '@/styles/util' as *;
+
+.limits {
+  :global .wrapper {
+    padding: rem(60) 0 rem(120);
+
+    @include break-up(laptopsmall) {
+      padding: rem(100) 0 rem(200);
+    }
+  }
+
+  h2 {
+    &:first-of-type {
+      @include break-up(laptopsmall) {
+        width: 98%;
+
+        :global .lines-wrapper {
+          &:first-of-type {
+            display: block !important;
+            text-align: right !important;
+          }
+        }
+        // text-indent: rem(520);
+      }
+    }
+
+    &:last-of-type {
+      margin: rem(24) 0 rem(40);
+
+      @include break-up(laptopsmall) {
+        margin: rem(40) 0 0;
+      }
+    }
+  }
+
+  p {
+    max-width: rem(438);
+    
+    @include break-up(laptopsmall) {
+      margin-left: auto;
+      margin-right: rem(115);
+    }
+  }
+}

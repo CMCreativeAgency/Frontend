@@ -1,0 +1,47 @@
+@use '@/styles/util' as *;
+
+.plans {
+  position: relative;
+  color: $white;
+
+  :global .wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100dvh;
+    text-align: center;
+    z-index: 1;
+  }
+
+  figure {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    picture {
+      height: 100%;
+    }
+  }
+
+  h2 {
+    margin-bottom: rem(12);
+
+    span {
+      font-family: var(--font-regular);
+
+      @include break-up(laptopsmall) {
+        display: block;
+      }
+    }
+  }
+
+  p {
+    max-width: rem(480);
+    width: 100%;
+    margin: 0 auto;
+  }
+}

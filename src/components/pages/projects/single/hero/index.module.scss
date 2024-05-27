@@ -1,0 +1,77 @@
+@use '@/styles/util' as *;
+
+.hero {
+  background-color: $black;
+  color: $white;
+
+  :global .wrapper {
+    position: relative;
+    margin-top: rem(-24);
+    padding-bottom: rem(40);
+    z-index: 1;
+
+    @include break-up(laptopsmall) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-top: rem(-106);
+    }
+
+    > span {
+      max-width: 100%;
+      width: 100%;
+
+      @include break-up(laptopsmall) {
+        margin-top: rem(120);
+      }
+
+      &::before {
+        background-color: $white;
+      }
+    }
+  }
+
+  figure {
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: rem(180);
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, #111 100%);
+
+      @include break-up(laptopsmall) {
+        height: rem(448);
+      }
+    }
+  }
+
+  h1 {
+    margin-bottom: rem(16);
+
+    @include break-up(laptopsmall) {
+      max-width: 90%;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    span {
+      color: $orange;
+      font-family: var(--font-regular);
+    }
+  }
+
+  a {
+    margin-bottom: rem(40);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: 0;
+      transform: translateY(rem(-24));
+    }
+  }
+}

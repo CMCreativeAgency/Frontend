@@ -1,0 +1,99 @@
+@use '@/styles/util' as *;
+
+.label {
+  position: relative;
+  display: block;
+
+  > p {
+    margin-bottom: rem(16);
+    font-family: var(--font-medium);
+  }
+
+  select {
+    display: none;
+  }
+}
+
+.custom-select {
+  position: relative;
+  // overflow: hidden;
+
+  &.open {
+    :global .arrow {
+      svg {
+        transform: scaleY(-1);
+      }
+    }
+
+    .custom-select__items {
+      padding: rem(2);
+    }
+  }
+
+  &__wrapper {
+  }
+
+  &__selected {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(24);
+    border: rem(1) solid rgba($black, 0.3);
+    border-radius: rem(8);
+    cursor: pointer;
+
+    @include break-up(laptopsmall) {
+      padding: rem(32) rem(24);
+    }
+
+    :global {
+      .text {
+        transition: 0.4s ease;
+      }
+
+      .arrow {
+        display: flex;
+        align-items: center;
+        width: rem(16);
+        height: rem(16);
+
+        svg {
+          transition: 0.4s ease;
+        }
+      }
+    }
+  }
+
+  &__items {
+    position: absolute;
+    top: calc(100% + #{rem(8)});
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    z-index: 10;
+    transition: padding 0.8s ease;
+
+    ul {
+      padding: rem(10) rem(16);
+      background: #fff;
+      border-radius: rem(8);
+      box-shadow: rem(2) rem(2) rem(20) 0 rgba(0, 0, 0, 0.1);
+    }
+
+    li {
+      position: relative;
+      padding: rem(16);
+      border-radius: rem(8);
+      transition: 0.4s ease;
+
+      cursor: pointer;
+
+      &.selected,
+      &:hover {
+        background-color: $black;
+        color: $white;
+      }
+    }
+  }
+}

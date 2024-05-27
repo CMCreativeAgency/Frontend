@@ -1,0 +1,35 @@
+@use '@/styles/util' as *;
+
+.media {
+  position: relative;
+  color: $white;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    height: calc(100% + #{rem(48)});
+    background-color: $black;
+
+    @include break-up(laptopsmall) {
+      height: calc(100% + #{rem(80)});
+    }
+  }
+
+  :global .wrapper {
+    margin: rem(24) auto;
+
+    @include break-up(laptopsmall) {
+      margin: rem(40) auto;
+    }
+  }
+
+  figure {
+    border-radius: rem(8);
+    overflow: hidden;
+  }
+}

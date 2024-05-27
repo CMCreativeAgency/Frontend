@@ -1,0 +1,42 @@
+@use '@/styles/util' as *;
+
+.hero {
+  background: #fff;
+  
+  :global .wrapper {
+    padding-top: rem(164);
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(232);
+    }
+  }
+
+  h1 {
+    span {
+      font-family: var(--font-regular);
+    }
+  }
+
+  span {
+    color: $orange;
+  }
+
+  p {
+    margin: rem(40) 0 rem(80);
+
+    @include break-up(laptopsmall) {
+      max-width: rem(333);
+      margin: rem(80) 0 rem(120) rem(115);
+    }
+  }
+
+  h2 {
+    max-width: rem(648);
+    margin-bottom: rem(80);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(120);
+      margin-left: auto;
+    }
+  }
+}

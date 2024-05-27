@@ -1,0 +1,84 @@
+@use '@/styles/util' as *;
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: color 0.8s ease;
+
+  &-light {
+    @extend .header;
+    color: $white;
+  }
+
+  &-dark {
+    @extend .header;
+    color: $black;
+  }
+
+  &.menu-open {
+    mix-blend-mode: normal !important;
+  }
+
+  > :global.wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(24) 0;
+
+    > p {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: currentColor;
+    }
+  }
+
+  &__logo {
+    position: relative;
+    display: block;
+    max-width: rem(61);
+    width: 100%;
+
+    @include break-up(laptopsmall) {
+      max-width: rem(80);
+    }
+
+    &.light {
+      img {
+        &:nth-of-type(1) {
+          opacity: 0;
+        }
+        &:nth-of-type(2) {
+          opacity: 1;
+        }
+      }
+    }
+
+    &.dark {
+      img {
+        &:nth-of-type(1) {
+          opacity: 1;
+        }
+        &:nth-of-type(2) {
+          opacity: 0;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      transition: 0.8s ease;
+
+      &:nth-of-type(2) {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+  }
+}

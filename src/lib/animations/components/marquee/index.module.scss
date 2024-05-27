@@ -1,0 +1,30 @@
+@use '@/styles/util' as *;
+
+.marquee {
+  position: absolute;
+  display: inline-flex;
+  height: 1.125em;
+  margin-top: -0.1em;
+  margin-left: rem(10);
+  line-height: 1.125em;
+  overflow: hidden;
+
+  @include break-up(laptopsmall) {
+    margin-left: rem(20);
+    margin-top: -0.125em;
+  }
+
+  > span {
+    display: flex;
+    flex-direction: column;
+    height: 1.125em;
+    will-change: transform;
+
+    span {
+      display: block;
+      height: 1.125em;
+      padding-bottom: 0.1em;
+      white-space: nowrap;
+    }
+  }
+}

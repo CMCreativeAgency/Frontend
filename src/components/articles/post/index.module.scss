@@ -1,0 +1,75 @@
+@use '@/styles/util' as *;
+
+.post-item {
+  position: relative;
+  border-radius: rem(8);
+  overflow: hidden;
+
+  &:hover {
+    figure {
+      &::before {
+        opacity: 1;
+      }
+
+      picture {
+        transform: scale(1.04);
+      }
+    }
+
+    h2 {
+      transform: translate(-50%, 0);
+    }
+  }
+
+  figure {
+    &::before {
+      opacity: 0;
+      transition: 0.4s ease;
+    }
+
+    picture {
+      transition: 0.4s ease;
+    }
+  }
+
+  &__categories {
+    display: flex;
+    gap: rem(8);
+    position: absolute;
+    top: rem(16);
+    right: rem(16);
+    z-index: 1;
+
+    button {
+      padding: rem(10) rem(20);
+      border-radius: rem(40);
+      background-color: #fff;
+      color: $black;
+      cursor: default;
+    }
+  }
+
+  h2 {
+    position: absolute;
+    bottom: rem(16);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - #{rem(32)});
+    color: #fff;
+    z-index: 2;
+
+    @include break-down(tablet) {
+      font-size: rem(24);
+      line-height: rem(26.4);
+      letter-spacing: rem(-0.48);
+      font-family: var(--font-roman);
+    }
+
+    @include break-up(laptopsmall) {
+      transform: translateX(-50%) translateY(200%);
+      width: calc(100% - #{rem(80)});
+      bottom: rem(40);
+      transition: 0.4s ease;
+    }
+  }
+}

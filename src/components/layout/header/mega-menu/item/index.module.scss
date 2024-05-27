@@ -1,0 +1,136 @@
+@use '@/styles/util' as *;
+
+.mega-menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: rem(16) 0;
+  // border-bottom: rem(1) solid rgba($white, 0.24);
+
+  &:hover,
+  &.active {
+    p,
+    span:first-of-type,
+    span:last-of-type {
+      opacity: 1 !important;
+    }
+
+    .mega-menu-item__line {
+      &::after {
+        left: 0;
+        right: unset;
+        width: 100%;
+      }
+    }
+  }
+
+  &.active {
+    span:first-of-type {
+      p {
+        transform: translateY(-100%);
+        color: $orange;
+      }
+    }
+
+    .mega-menu-item__arrow {
+      svg {
+        opacity: 0;
+      }
+
+      &::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+  }
+
+  > p {
+    margin-right: rem(40);
+    align-self: flex-start;
+    transition: 0.4s ease;
+
+    @include break-up(laptopsmall) {
+      max-width: 19%;
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  &__label {
+    position: relative;
+    overflow: hidden;
+    will-change: transform;
+
+    p {
+      font-size: rem(27);
+      line-height: rem(32.4);
+      letter-spacing: normal;
+      transition: 0.4s ease;
+
+      @include break-up(laptopsmall) {
+        font-size: rem(38);
+        line-height: rem(45.6);
+      }
+
+      &:last-of-type {
+        position: absolute;
+        top: 100%;
+        left: 0;
+      }
+    }
+  }
+
+  &__arrow {
+    position: relative;
+    max-width: rem(24);
+    width: 100%;
+    margin-left: auto;
+    transition: 0.4s ease;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: rem(26);
+      height: rem(26);
+      border-radius: 50%;
+      background-color: $orange;
+      opacity: 0;
+      transition: 0.4s ease;
+    }
+
+    svg {
+      transition: 0.4s ease;
+    }
+
+    @include break-up(laptopsmall) {
+      max-width: rem(30);
+    }
+  }
+
+  &__line {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: rem(1);
+    opacity: 1;
+    background: rgba($white, 0.24);
+    transition: background 0.4s ease, opacity 0.4s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: unset;
+      right: 0;
+      width: 0;
+      height: rem(1);
+      background-color: $orange;
+      transition: .6s ease;
+    }
+  }
+}

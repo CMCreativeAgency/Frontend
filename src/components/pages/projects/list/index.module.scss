@@ -1,0 +1,10 @@
+@use '@/styles/util' as *;
+
+.list {
+  background-color: $black;
+  color: $white;
+
+  :global .wrapper {
+    padding: rem(40) 0;
+  }
+}

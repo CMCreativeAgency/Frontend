@@ -1,0 +1,77 @@
+@use '@/styles/util' as *;
+
+.hero {
+  background-color: $black;
+  color: $white;
+
+  :global .wrapper {
+    position: relative;
+    margin-top: rem(-72);
+    padding-bottom: rem(160);
+    z-index: 1;
+
+    @include break-up(laptopsmall) {
+      margin-top: rem(-106);
+      padding-bottom: rem(120);
+    }
+  }
+
+  figure {
+    position: relative;
+    height: 100dvh;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: rem(248);
+      width: 100%;
+      background: linear-gradient(180deg, rgba(17, 17, 17, 0) 0%, #111 100%);
+    }
+
+    picture {
+      height: 100%;
+    }
+  }
+
+  h1 {
+    margin-bottom: rem(20);
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(120);
+    }
+
+    span {
+      display: block;
+    }
+  }
+
+  &__content {
+    margin-top: rem(80);
+
+    @include break-up(laptopsmall) {
+      display: flex;
+      justify-content: space-between;
+      margin-top: rem(120);
+    }
+
+    p {
+      margin-bottom: rem(24);
+
+      @include break-up(laptopsmall) {
+        max-width: 46%;
+        width: 100%;
+        margin-bottom: 0;
+      }
+    }
+
+    h2 {
+      @include break-up(laptopsmall) {
+        max-width: 46%;
+        width: 100%;
+      }
+    }
+  }
+}

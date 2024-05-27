@@ -1,0 +1,46 @@
+@use "@styles/util" as *;
+
+.yt-player {
+  position: relative;
+
+  &.play {
+    img,
+    button {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  img {
+    transition: 0.6s ease;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: rem(52);
+    height: rem(52);
+    border-radius: 50%;
+    background-color: rgba($white, 0.3);
+    transition: 0.6s ease;
+
+    &:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &:active {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    span {
+      display: flex;
+      width: rem(24);
+      height: rem(20);
+    }
+  }
+}

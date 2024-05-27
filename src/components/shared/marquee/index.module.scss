@@ -1,0 +1,53 @@
+@use '@/styles/util' as *;
+
+.marquee {
+  display: flex;
+  height: 300dvh;
+  background: #fff;
+  margin-bottom: -100vh;
+
+  &.parallax {
+    clip-path: inset(0 0 0 0);
+    overflow: hidden;
+
+    :global .wrapper {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+
+      @include break-up(laptopsmall) {
+        height: 100dvh;
+      }
+
+      > div {
+        overflow: visible;
+      }
+    }
+  }
+
+  :global .wrapper {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: rem(8);
+
+    @include break-up(laptopsmall) {
+      gap: rem(48);
+      padding: rem(176) 0;
+    }
+  }
+
+  h2 {
+    span {
+      color: $orange;
+      font-family: var(--font-regular);
+    }
+  }
+}

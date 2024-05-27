@@ -1,0 +1,30 @@
+@use '@/styles/util' as *;
+
+.intro {
+  :global .wrapper {
+    padding-top: rem(80);
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(104);
+    }
+  }
+
+  figure {
+    margin-bottom: rem(80);
+    border-radius: rem(8);
+    overflow: hidden;
+
+    @include break-up(laptopsmall) {
+      margin-bottom: rem(200);
+    }
+  }
+
+  h2 {
+    margin-bottom: rem(80);
+
+    @include break-up(laptopsmall) {
+      white-space: pre-line;
+      margin-bottom: rem(120);
+    }
+  }
+}
