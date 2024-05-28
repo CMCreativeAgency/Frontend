@@ -9,6 +9,7 @@ import { useHeaderContext } from '@/lib/context/use-header'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { useLoaderContext } from '@/lib/context/use-loader'
+import Link from 'next/link'
 
 interface HeaderProps {
   menu: MenuItemProps[]
@@ -47,11 +48,11 @@ function Header({ menu, socials, legal, copy }: HeaderProps) {
   return (
     <header className={classes[`header-${color}`]} ref={headerRef}>
       <div className="wrapper">
-        <a className={clsx(classes['header__logo'], classes[color!])} href="/" aria-label="logo">
+        <Link href={'/'} className={clsx(classes['header__logo'])} aria-label="logo">
           <Image src={`/media/logo-color.png`} width={1} height={1} alt="logo" unoptimized={true} />
           <Image src={`/media/logo.png`} width={1} height={1} alt="logo" unoptimized={true} />
-        </a>
-
+        </Link>
+        
         <p className="caption">
           <span className="f-regular">Creative</span> agency
         </p>
