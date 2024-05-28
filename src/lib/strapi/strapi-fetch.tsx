@@ -65,6 +65,9 @@ export async function getPage(slug: string) {
               fields: {
                 populate: '*',
               },
+              thankyou: {
+                populate: '*',
+              },
               options: {
                 populate: '*',
               },

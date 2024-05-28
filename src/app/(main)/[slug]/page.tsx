@@ -10,6 +10,7 @@ import ContactHero from '@/components/pages/contact/hero'
 import GivebackHero from '@/components/pages/giveback/hero'
 import GivebackHistory from '@/components/pages/giveback/history'
 import GivebackPlans from '@/components/pages/giveback/plans'
+import LegalContent from '@/components/pages/legal/content'
 import NewsHero from '@/components/pages/news/hero'
 import NewsList from '@/components/pages/news/list'
 import ProjectsHero from '@/components/pages/projects/hero'
@@ -64,6 +65,7 @@ const components: any = {
   'contact-hero': ContactHero,
   'contact-form': ContactForm,
   'contact-careers': ContactCareers,
+  content: LegalContent,
 }
 
 async function Page({ params }: PageProps) {
@@ -77,7 +79,7 @@ async function Page({ params }: PageProps) {
         const value = val.split(':')[1]
         let Component
 
-        if (value !== 'marquee' && value !== 'services' && value !== 'cta') {
+        if (value !== 'marquee' && value !== 'services' && value !== 'cta' && value !== 'content') {
           Component = components[`${params.slug}-${value}`]
         } else {
           Component = components[value]

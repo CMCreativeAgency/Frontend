@@ -9,29 +9,52 @@ type FileInputProps = {
   label?: string
   description?: string
   error?: FieldError | undefined
+  setValue: any
   children?: React.ReactNode
-  tooltip?: string
-  tooltipContent?: string
 } & React.InputHTMLAttributes<HTMLInputElement>
 
 const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
-  ({ label, description, error, children, tooltip, tooltipContent, ...props }, ref) => {
-    const [fileUploaded, setFileUploaded] = useState(false)
+  ({ label, description, error, setValue, children, ...props }, ref) => {
+    const [fileUploaded, setFileUploaded] = useState<any>(false)
+    const [dragOver, setDragOver] = useState(false)
     const inputRef = useRef<HTMLInputElement>(null)
     const placeholderRef = useRef<HTMLParagraphElement>(null)
 
     useImperativeHandle(ref, () => inputRef.current!)
 
-    function onInput(e: BaseSyntheticEvent) {
-      const files = e.target.files
+    function onInput(e: any) {
+      const data = e.target.files[0]
 
-      if (files[0]) {
-        setFileUploaded(true)
-        placeholderRef.current!.innerText = files[0].name
+      if (data) {
+        setFileUploaded(data)
+        setValue(props.name, data)
       } else {
         setFileUploaded(false)
-        placeholderRef.current!.innerText = props.placeholder!
+        setValue(props.name, '')
       }
+    }
+
+    function onDragOver(e: BaseSyntheticEvent) {
+      e.preventDefault()
+      setDragOver(true)
+    }
+
+    function onDrop(e: any) {
+      e.preventDefault()
+      const data = e.dataTransfer.files
+
+      if (data[0]) {
+        setFileUploaded(data[0])
+        setValue(props.name, data[0])
+      } else {
+        setFileUploaded(false)
+        setValue(props.name, '')
+      }
+    }
+
+    function onDragEnd(e: BaseSyntheticEvent) {
+      e.preventDefault()
+      setDragOver(false)
     }
 
     return (
@@ -39,18 +62,30 @@ const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
         className={clsx(
           classes['label'],
           error && classes['error'],
+          dragOver && classes['over'],
           fileUploaded && classes['uploaded']
         )}
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+        onDragEnd={onDragEnd}
+        onDragLeave={onDragEnd}
       >
         {label && <p className="f-medium">{label}</p>}
 
         <span className={clsx(classes['label__input'], props['disabled'] && 'disabled')}>
-          <input className="md" ref={inputRef} onInput={onInput} {...props} />
+          <input
+            ref={inputRef}
+            type="file"
+            className="md"
+            onInput={onInput}
+            // onChange={onInput}
+            {...props}
+          />
           <UploadIcon />
           <p
             className="placeholder"
             ref={placeholderRef}
-            dangerouslySetInnerHTML={{ __html: `${props.placeholder}` }}
+            dangerouslySetInnerHTML={{ __html: `${fileUploaded.name || props.placeholder}` }}
           ></p>
         </span>
 

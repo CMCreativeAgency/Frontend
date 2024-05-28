@@ -19,6 +19,12 @@ function Loader({ setState }: LoaderProps) {
     window.scrollTo(0, 0)
 
     const ctx = gsap.context(() => {
+      tlRef.current.to(wrapperRef.current, {
+        autoAlpha: 1,
+        duration: 0.1,
+        ease: 'power2',
+      })
+
       tlRef.current.to(numRef.current, {
         textContent: 100,
         snap: {
@@ -59,7 +65,7 @@ function Loader({ setState }: LoaderProps) {
   return (
     <div className={classes['loader']} ref={loaderRef}>
       <span className="h1 f-regular">
-        <span ref={wrapperRef}>
+        <span className={classes['loader-num']} ref={wrapperRef}>
           <span ref={numRef}>0</span>%
         </span>
       </span>

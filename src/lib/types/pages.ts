@@ -313,6 +313,10 @@ export type ContactFormProps = {
           title?: string
           slug?: string
           fields?: any
+          thankyou?: {
+            heading?: string
+            content?: string
+          }
         }
       }
     }

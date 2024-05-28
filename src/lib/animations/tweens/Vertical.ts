@@ -8,7 +8,11 @@ export default class VerticalTween {
   constructor(element: HTMLElement, params: {}) {
     this.node = gsap.utils.selector(element)
     this.params = params
-    this.target = this.params?.target ? this.node(this.params?.target) : element
+    this.target = this.params?.target
+      ? Array.isArray(this.params?.target)
+        ? this.params.target?.map((el: any) => this.node(el))
+        : this.node(this.params?.target)
+      : element
   }
 
   prepare() {
@@ -47,7 +51,7 @@ export default class VerticalTween {
       opacity: 1,
       delay: this.params.delay ?? 0,
       stagger: this.params.stagger ?? 0.1,
-      duration: this.params.duration ?? .8,
+      duration: this.params.duration ?? 0.8,
       ease: this.params.scrub ? 'none' : 'power2.out',
       overwrite: true,
     })

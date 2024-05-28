@@ -39,7 +39,7 @@ function MegaMenuItem({ href, label, index, setMenuState }: MegaMenuItemProps) {
 
     clickTO.current = setTimeout(() => {
       router.push(href)
-    }, 1000)
+    }, 900)
   }
 
   return (

@@ -22,12 +22,20 @@ function PostHero({ data }: PostHeroProps) {
           className="button__brackets"
           double={true}
           onClick={() => router.back()}
+          data-enter={`{'tween': 'y', 'opacity': '0', 'delay': 0.1}`}
         />
 
         <div className={classes['hero__content']}>
-          <h1 className="upper" dangerouslySetInnerHTML={{ __html: `${heading}` }}></h1>
+          <h1
+            className="upper"
+            dangerouslySetInnerHTML={{ __html: `${heading}` }}
+            data-enter={`{'tween': 'y', 'opacity': '0', 'delay': 0.1}`}
+          ></h1>
 
-          <div className={classes['hero__info']}>
+          <div
+            className={classes['hero__info']}
+            data-enter={`{'tween': 'y', 'target': ['button', 'p'], 'opacity': '0', 'stagger':'0.05', 'delay': 0.25}`}
+          >
             <div className={classes['hero__categories']}>
               {categories?.data?.map((cats) => (
                 <Button className="m" key={cats.id} label={cats?.attributes?.title} />
@@ -40,7 +48,14 @@ function PostHero({ data }: PostHeroProps) {
         </div>
       </div>
 
-      <Img priority={true} imageData={image} pclass="mw-m" aspectMobile={100} parallax="media" />
+      <Img
+        priority={true}
+        imageData={image}
+        pclass="mw-m"
+        aspectMobile={100}
+        parallax="media"
+        anim={`{'tween': 'y', 'opacity': '0', 'delay': 0.4}`}
+      />
     </section>
   )
 }

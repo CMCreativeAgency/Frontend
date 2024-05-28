@@ -8,9 +8,8 @@
   gap: rem(8);
 
   &.error {
-    .border {
-      border-color: red;
-      opacity: 1;
+    p {
+      color: $red;
     }
   }
 

@@ -20,6 +20,12 @@
     }
   }
 
+  &.over {
+    > span {
+      background-color: #f7f7f7;
+    }
+  }
+
   :global .disabled {
     opacity: 0.6;
   }

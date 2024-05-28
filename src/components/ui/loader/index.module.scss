@@ -23,4 +23,9 @@
   span {
     display: inline-block;
   }
+
+  &-num {
+    opacity: 0;
+    visibility: hidden;
+  }
 }

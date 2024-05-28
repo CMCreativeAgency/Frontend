@@ -11,6 +11,7 @@ import ScrollingText from '../scrolling-text'
 import IconExternal from '@/components/svg/external'
 
 function Cursor() {
+  const isEnabled = useRef(false)
   const [cursorClass, setCursorClass] = useState<string | undefined>(undefined)
   const [text, setText] = useState<string | undefined>(undefined)
   const currentEl = useRef()
@@ -129,6 +130,13 @@ function Cursor() {
     })
 
     const onPointerMove = (e: any) => {
+      if (!isEnabled.current) {
+        isEnabled.current = true
+        gsap.to([cursorRef.current, cursorOuterRef.current], {
+          autoAlpha: 1,
+        })
+      }
+
       mouse.current = { x: e.clientX, y: e.clientY }
 
       const cursorMove = (el: any, pos: any, dur: any) => {

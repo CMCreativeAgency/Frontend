@@ -13,6 +13,7 @@
   z-index: 1000;
   pointer-events: none;
   text-transform: uppercase;
+  visibility: hidden;
 
   > span {
     transition: opacity 0.4s ease;
@@ -84,6 +85,8 @@
   background-color: #fff;
   backface-visibility: hidden;
   mix-blend-mode: difference;
+  opacity: 0;
+  visibility: hidden;
   // overflow: hidden;
   // backdrop-filter: blur(rem(5));
 

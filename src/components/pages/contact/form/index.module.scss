@@ -152,4 +152,37 @@
       }
     }
   }
+
+  &__message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: rem(80) 0;
+    text-align: center;
+
+    @include break-up(laptopsmall) {
+      min-height: rem(800);
+    }
+
+    h2 {
+      margin-bottom: rem(24);
+
+      @include break-up(laptopsmall) {
+        font-size: rem(77);
+        line-height: rem(84);
+        letter-spacing: rem(-1.54);
+      }
+
+      span {
+        display: block;
+        color: $orange;
+        font-family: var(--font-regular);
+      }
+    }
+
+    p {
+      max-width: rem(205);
+    }
+  }
 }

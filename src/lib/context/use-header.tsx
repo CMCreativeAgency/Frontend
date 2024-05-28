@@ -1,6 +1,7 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react'
 import { useIsomorphicLayoutEffect } from './use-isomorphic-layout-effect'
+import { useLoaderContext } from './use-loader'
 
 export const HeaderContext = createContext({})
 
@@ -12,6 +13,7 @@ export default function HeaderProvider({ children }: HeaderProps) {
   // const [headerOnScroll, setHeaderOnScroll] = useState(false)
   // const [height, setHeight] = useState<number | null>(null)
   const [color, setColor] = useState<string | null>(null)
+  const { isLoaded }: any = useLoaderContext()
 
   useIsomorphicLayoutEffect(() => {
     const header = document.querySelector('header')
@@ -66,7 +68,7 @@ export default function HeaderProvider({ children }: HeaderProps) {
       window.removeEventListener('scroll', scrollHandler)
       window.removeEventListener('wheel', scrollHandler)
     }
-  }, [])
+  }, [isLoaded])
 
   const context = {
     set: {

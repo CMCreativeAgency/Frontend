@@ -1,0 +1,141 @@
+@use '@/styles/util' as *;
+
+.content {
+  :global .wrapper {
+    padding-top: rem(164);
+    padding-bottom: rem(60);
+
+    @include break-up(laptopsmall) {
+      padding-top: rem(232);
+      padding-bottom: rem(120);
+    }
+
+    > h1 {
+      margin-bottom: rem(56);
+
+      @include break-up(laptopsmall) {
+        margin-bottom: rem(80);
+      }
+    }
+  }
+
+  &__text {
+    @include break-up(laptopsmall) {
+      max-width: 57.6%;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+      a {
+        position: relative;
+        display: inline-block;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        font-family: inherit;
+
+        &::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          height: rem(1);
+          background-color: currentColor;
+          transition: 0.4s ease;
+        }
+
+        &:hover {
+          &::before {
+            left: unset;
+            right: 0;
+            width: 0;
+          }
+        }
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      & + p {
+        margin-top: rem(32);
+      }
+    }
+
+    p {
+      white-space: pre-line;
+      opacity: 0.7;
+
+      &:first-child {
+        margin-bottom: rem(64);
+      }
+
+      & + h1,
+      & + h2,
+      & + h3,
+      & + h4,
+      & + h5 {
+        margin-top: rem(64);
+      }
+
+      & + h6 {
+        margin-top: rem(24);
+      }
+    }
+
+    ul {
+      margin: rem(24) 0;
+
+      & + h1,
+      & + h2,
+      & + h3,
+      & + h4,
+      & + h5 {
+        margin-top: rem(64);
+      }
+
+      li {
+        font-size: rem(15);
+        line-height: rem(16.5);
+        letter-spacing: rem(-0.3);
+        font-family: var(--font-roman);
+
+        @include break-up(laptopsmall) {
+          line-height: rem(19.5);
+          letter-spacing: normal;
+        }
+
+        &:not(:last-of-type) {
+          margin-bottom: rem(6);
+        }
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 4px;
+          height: 4px;
+          margin: 0 rem(8);
+          border-radius: 50%;
+          transform: translateY(rem(-2));
+          background-color: currentColor;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    figure {
+      margin: rem(32) 0;
+    }
+  }
+}

@@ -9,6 +9,13 @@
     font-family: var(--font-medium);
   }
 
+  &.error {
+    input,
+    textarea {
+      border-color: $red;
+    }
+  }
+
   input,
   textarea {
     display: block;
@@ -18,6 +25,7 @@
     border: rem(1) solid rgba($black, 0.3);
     letter-spacing: normal;
     background-color: transparent !important;
+    transition: 0.4s ease;
     appearance: none;
 
     @include break-up(laptopsmall) {
@@ -36,8 +44,50 @@
 
   &__error {
     position: absolute;
-    top: calc(100% + #{rem(8)});
-    left: 0;
-    color: red;
+    top: calc(100% + #{rem(10)});
+    left: 30.4%;
+    display: inline-flex;
+    align-items: center;
+    padding: rem(12) rem(10);
+    gap: rem(10);
+    color: $red;
+    border-radius: rem(4);
+    background-color: rgba($red, 0.05);
+    // border: rem(1) solid $red;
+    box-shadow: 0 0 0 1px $red;
+    z-index: 1;
+
+    &::before,
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      // bottom: calc(100% - #{rem(1)});
+      bottom: 100%;
+      left: rem(20);
+      border-top: rem(10) solid transparent;
+      border-right: rem(7) solid transparent;
+      border-bottom: rem(10) solid #fff3f3;
+      border-left: rem(7) solid transparent;
+      z-index: 2;
+      // background-color: $red;
+    }
+
+    &::after {
+      border-bottom: rem(10.5) solid $red;
+      border-right: rem(8.1) solid transparent;
+      border-left: rem(8.1) solid transparent;
+      left: rem(19);
+      z-index: 0;
+    }
+
+    svg {
+      max-width: rem(24);
+      width: 100%;
+    }
+
+    span {
+      display: block;
+    }
   }
 }
