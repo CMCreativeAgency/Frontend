@@ -161,6 +161,10 @@
     flex-direction: column;
     padding: rem(80) 0;
     text-align: center;
+    padding: rem(32) rem(24) 0;
+    border-radius: rem(12);
+    background-color: #fff;
+    color: $black;
 
     @include break-up(laptopsmall) {
       min-height: rem(900);
