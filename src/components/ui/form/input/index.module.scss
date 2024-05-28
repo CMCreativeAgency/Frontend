@@ -24,6 +24,7 @@
     border-radius: rem(8);
     border: rem(1) solid rgba($black, 0.3);
     letter-spacing: normal;
+    font-family: var(--font-roman);
     background-color: transparent !important;
     transition: 0.4s ease;
     appearance: none;
@@ -40,6 +41,11 @@
         opacity: 1;
       }
     }
+  }
+
+  textarea {
+    min-height: rem(200);
+    resize: vertical;
   }
 
   &__error {

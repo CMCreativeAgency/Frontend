@@ -1,4 +1,5 @@
-import classes from './Input.module.scss'
+import IconInfo from '@/components/svg/info'
+import classes from '../input/index.module.scss'
 import clsx from 'clsx'
 import React, { useImperativeHandle, useRef } from 'react'
 import { FieldError } from 'react-hook-form'
@@ -20,8 +21,12 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
         <textarea ref={textareaRef} aria-invalid={error && true} {...props} />
 
-        <span className={classes['border']}></span>
-        {/* {error && <p className={clsx(classes['label__error'], 'xs')}>{error.message}</p>} */}
+        {error && (
+          <span className={clsx(classes['label__error'], 'xs')}>
+            <IconInfo />
+            <span className="m f-roman">Please fill in this field.</span>
+          </span>
+        )}
       </label>
     )
   }

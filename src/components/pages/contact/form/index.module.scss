@@ -113,11 +113,6 @@
   }
 
   &__items {
-    padding: rem(32) rem(24) 0;
-    border-radius: rem(12);
-    background-color: #fff;
-    color: $black;
-    overflow: hidden;
 
     @include break-up(laptopsmall) {
       max-width: 49%;
@@ -126,6 +121,12 @@
     }
 
     form {
+      padding: rem(32) rem(24) 0;
+      border-radius: rem(12);
+      background-color: #fff;
+      color: $black;
+      overflow: hidden;
+
       label {
         &:not(:last-of-type) {
           margin-bottom: rem(40);
@@ -162,7 +163,7 @@
     text-align: center;
 
     @include break-up(laptopsmall) {
-      min-height: rem(800);
+      min-height: rem(900);
     }
 
     h2 {

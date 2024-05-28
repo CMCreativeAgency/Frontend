@@ -11,6 +11,7 @@ import Checkbox from '@/components/ui/form/checkbox'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import useWeb3forms from '@web3forms/react'
+import Textarea from '@/components/ui/form/textarea'
 
 function ContactForm({ data }: ContactFormProps) {
   const { heading, subhead, button, socials, content, form, video } = data
@@ -26,7 +27,7 @@ function ContactForm({ data }: ContactFormProps) {
     formState: { errors },
   } = useForm()
 
-  const accessKey = '59b5a90c-08f0-4472-87c4-8740c1065d61'
+  const accessKey = process.env.NEXT_PUBLIC_WEBFORM
 
   // const onSubmit: SubmitHandler<any> = async (data: any) => {
   // return;
@@ -73,8 +74,7 @@ function ContactForm({ data }: ContactFormProps) {
   // }
 
   const { submit: onSubmit } = useWeb3forms({
-    access_key: accessKey,
-
+    access_key: accessKey!,
     onSuccess: (msg, data) => {
       // console.log(data)
       setSuccess(true)
@@ -131,13 +131,6 @@ function ContactForm({ data }: ContactFormProps) {
         <div className={classes['form__items']}>
           {!success && (
             <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
-              <input
-                type={'hidden'}
-                {...register('access_key', {
-                  value: '4b309318-8141-4ca3-9f45-84c072f38a34',
-                })}
-              />
-
               <input
                 type={'hidden'}
                 {...register('subject', {
@@ -212,6 +205,19 @@ function ContactForm({ data }: ContactFormProps) {
                       register={register}
                       options={field.options}
                       required={field.required}
+                      error={errors[field.name] as any}
+                    />
+                  )
+                }
+
+                if (field.__component.includes('textarea')) {
+                  return (
+                    <Textarea
+                      key={i}
+                      label={field.label}
+                      {...register(field.name, {
+                        required: field.required,
+                      })}
                       error={errors[field.name] as any}
                     />
                   )

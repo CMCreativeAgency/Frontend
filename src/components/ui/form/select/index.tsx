@@ -4,6 +4,7 @@ import ChevronDown from '@/components/svg/arrows/ChevronDown'
 import React, { use, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import clsx from 'clsx'
 import gsap from 'gsap'
+import IconInfo from '@/components/svg/info'
 
 type SelectInputProps = {
   label?: string
@@ -15,7 +16,7 @@ type SelectInputProps = {
 } & React.InputHTMLAttributes<HTMLSelectElement>
 
 const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
-  ({ label, options, register, setValue, ...props }, ref) => {
+  ({ label, options, register, setValue, error, ...props }, ref) => {
     const [isOpen, setIsOpen] = useState(false)
     const [activeIndex, setActiveIndex] = useState(0)
     const customSelectRef = useRef<HTMLElement>(null)
@@ -95,6 +96,13 @@ const SelectInput = React.forwardRef<HTMLSelectElement, SelectInputProps>(
             </div>
           </div>
         </div>
+
+        {error && (
+          <span className={clsx(classes['label__error'], 'xs')}>
+            <IconInfo />
+            <span className="m f-roman">Please fill in this field.</span>
+          </span>
+        )}
       </label>
     )
   }

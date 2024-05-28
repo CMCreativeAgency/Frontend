@@ -1,4 +1,5 @@
 'use client'
+import IconInfo from '@/components/svg/info'
 import classes from './index.module.scss'
 import clsx from 'clsx'
 import React, { useImperativeHandle, useRef } from 'react'
@@ -25,7 +26,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         {label && !dangerously && <p>{label}</p>}
         {label && dangerously && <p dangerouslySetInnerHTML={{ __html: `${label}` }}></p>}
 
-        {/* {error && <p className={clsx(classes['label__error'], 'xs')}>{error.message}</p>} */}
+        {error && (
+          <span className={clsx(classes['label__error'], 'xs')}>
+            <IconInfo />
+            <span className="m f-roman">Please fill in this field.</span>
+          </span>
+        )}
       </label>
     )
   }
