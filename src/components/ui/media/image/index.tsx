@@ -59,7 +59,7 @@ function Img({
   if (onlyImage) {
     return (
       <Image
-        src={`http://localhost:1337${image?.url}` || 'http://via.placeholder.com/50x50'}
+        src={`${image?.url}` || 'http://via.placeholder.com/50x50'}
         alt={image?.name || 'image'}
         quality="95"
         width={image?.width || 1}
@@ -81,7 +81,7 @@ function Img({
       >
         <picture className={pclass} style={activeAspect}>
           <Image
-            src={`http://localhost:1337${image?.url}` || 'http://via.placeholder.com/50x50'}
+            src={`${image?.url}` || 'http://via.placeholder.com/50x50'}
             alt={image?.name || 'image'}
             quality="95"
             width={image?.width || 1}
