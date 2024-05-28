@@ -67,32 +67,34 @@ main {
 //   }
 // }
 
-// [data-loader],
-// [data-enter],
-// [data-anim] {
-//   &,
-//   &::before,
-//   &::after {
-//     will-change: transform, height, width, scale, opacity;
-//     backface-visibility: hidden !important;
-//     transition: none;
-//     animation: none;
-//     font-kerning: none;
-//     -webkit-text-rendering: optimizeSpeed;
-//     text-rendering: optimizeSpeed;
+[data-loader],
+[data-enter],
+[data-anim] {
+  &,
+  &::before,
+  &::after {
+    will-change: transform;
+    backface-visibility: hidden !important;
+    transition: none;
+    animation: none;
+    font-kerning: none;
+    -webkit-text-rendering: optimizeSpeed;
+    text-rendering: optimizeSpeed;
 
-//     -webkit-transform: translateZ(0);
-//     transform: translateZ(0);
-//   }
-// }
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
 
 .chars,
 .words,
 .lines {
   display: inline-block !important;
+  will-change: transform;
 
   &-wrapper {
     display: inline-block !important;
-    vertical-align: bottom !important;
+    will-change: transform;
+    overflow: visible;
   }
 }

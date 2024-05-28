@@ -23,7 +23,7 @@ function ServicesItem({ slug, title, image, active, index, total }: ServicesItem
         <span>
           0<span>{(index || 0) + 1}</span>
         </span>
-        /<span className="o5 f-regular">{`${total}`.padStart(2, '0')}</span>
+        /<span className="f-regular">{`${total}`.padStart(2, '0')}</span>
       </h2>
 
       <Img pclass="mw" imageData={image} />

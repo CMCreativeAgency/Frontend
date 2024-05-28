@@ -22,6 +22,12 @@
 
     > span {
       &:last-of-type {
+        opacity: 0.5;
+
+        @include safari-only {
+          opacity: 1;
+        }
+
         @include break-up(laptopsmall) {
           font-size: rem(84);
           line-height: rem(84);

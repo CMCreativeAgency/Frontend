@@ -60,6 +60,13 @@ h1,
     line-height: rem(145);
     letter-spacing: rem(-2.9);
   }
+
+  span {
+    @include break-up(laptopsmall) {
+      display: inline-block;
+      line-height: rem(160);
+    }
+  }
 }
 
 h2,
