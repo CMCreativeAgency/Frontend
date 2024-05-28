@@ -234,8 +234,8 @@ function ContactForm({ data }: ContactFormProps) {
                   })
               })
             }
-          }} */}
-        />
+          }} 
+        />*/}
       </div>
     </section>
   )
