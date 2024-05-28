@@ -48,11 +48,15 @@ function Header({ menu, socials, legal, copy }: HeaderProps) {
   return (
     <header className={classes[`header-${color}`]} ref={headerRef}>
       <div className="wrapper">
-        <Link href={'/'} className={clsx(classes['header__logo'])} aria-label="logo">
+        <Link
+          href={'/'}
+          className={clsx(classes['header__logo'], classes[color!])}
+          aria-label="logo"
+        >
           <Image src={`/media/logo-color.png`} width={1} height={1} alt="logo" unoptimized={true} />
           <Image src={`/media/logo.png`} width={1} height={1} alt="logo" unoptimized={true} />
         </Link>
-        
+
         <p className="caption">
           <span className="f-regular">Creative</span> agency
         </p>
