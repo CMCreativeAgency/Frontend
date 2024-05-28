@@ -14,7 +14,7 @@ function ServicesHero({ data }: ServicesHeroProps) {
           data-enter={`{'tween': 'title', 'target': '.lines', 'delay': 0.1}`}
           data-split={`{'type': 'lines', 'wrapper': 'lines'}`}
         ></h1>
-        <p>{subhead}</p>
+        <p data-enter={`{'tween': 'opacity', 'delay': '.4'}`}>{subhead}</p>
         <h2
           className="xl f-roman"
           dangerouslySetInnerHTML={{ __html: `${content}` }}

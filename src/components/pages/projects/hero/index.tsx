@@ -13,7 +13,7 @@ function ProjectsHero({ data }: ProjectsHeroProps) {
           data-enter={`{'tween': 'title', 'target': '.lines', 'delay': 0.1}`}
           data-split={`{'type': 'lines', 'wrapper': 'lines'}`}
         ></h1>
-        <p>{content}</p>
+        <p data-enter={`{'tween': 'opacity', 'delay': '.25'}`}>{content}</p>
       </div>
     </section>
   )

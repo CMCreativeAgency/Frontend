@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "types": ["@types/grecaptcha"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,6 +24,13 @@
       "@public/*": ["./public/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/animations/helpers/horizontal-loop.js", "src/app/(main)/[slug]"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/lib/animations/helpers/horizontal-loop.js",
+    "src/app/(main)/[slug]"
+  ],
   "exclude": ["node_modules"]
 }

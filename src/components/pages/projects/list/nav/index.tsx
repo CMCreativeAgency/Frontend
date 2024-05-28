@@ -69,7 +69,7 @@ function ProjectsListNav({ categories }: ProjectsListNav) {
   )
 
   return (
-    <div className={classes['list-nav']}>
+    <div className={classes['list-nav']} data-enter={`{'tween': 'opacity', 'delay': '.3'}`}>
       {device === 'mobile' && (
         <button
           className={clsx('p', filterState && classes['active'])}

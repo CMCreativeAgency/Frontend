@@ -36,7 +36,7 @@ function NewsListItems({ items }: NewsListItemsProps) {
   }, [searchParams])
 
   return (
-    <div className={classes['list-items']}>
+    <div className={classes['list-items']} data-enter={`{'tween': 'opacity', 'delay': '.4'}`}>
       {posts.length && (
         <ul>
           {posts?.map((post) => (

@@ -84,7 +84,7 @@ function Video({
       ref={ref}
       data-parallax={parallax}
     >
-      <video ref={videoRef} src={`${videoData?.url}`} {...props}></video>
+      <video ref={videoRef} src={`http://localhost:1337${videoData?.url}`} {...props}></video>
 
       {children && <figcaption>{children}</figcaption>}
       {controls && (

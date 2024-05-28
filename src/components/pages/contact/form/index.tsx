@@ -8,16 +8,18 @@ import FileInput from '@/components/ui/form/file'
 import SelectInput from '@/components/ui/form/select'
 import Video from '@/components/ui/media/video'
 import Checkbox from '@/components/ui/form/checkbox'
-import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react'
 import useWeb3forms from '@web3forms/react'
 import Textarea from '@/components/ui/form/textarea'
+import Script from 'next/script'
 
 function ContactForm({ data }: ContactFormProps) {
   const { heading, subhead, button, socials, content, form, video } = data
   const { fields, thankyou }: any = form?.data?.attributes
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | boolean>(false)
+  // const [captchatoken, setCaptchaToken] = useState('')
 
   const {
     reset,
@@ -28,36 +30,13 @@ function ContactForm({ data }: ContactFormProps) {
   } = useForm()
 
   const accessKey = process.env.NEXT_PUBLIC_WEBFORM
+  // const captcha = process.env.NEXT_PUBLIC_SITEKEY
+
+  // useEffect(() => {
+  //   setValue('recaptcha_response', captchatoken)
+  // }, [captchatoken])
 
   // const onSubmit: SubmitHandler<any> = async (data: any) => {
-  // return;
-  // await fetch('https://api.web3forms.com/submit', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Accept: 'application/json',
-  //   },
-  //   body: JSON.stringify(data, null, 2),
-  // })
-  //   .then(async (response) => {
-  //     let json = await response.json()
-  //     if (json.success) {
-  //       reset()
-  //       setError(false)
-  //       setSuccess(true)
-
-  //       setTimeout(() => {
-  //         setSuccess(false)
-  //       }, 4000)
-  //     } else {
-  //       setSuccess(false)
-  //       setError(json?.message)
-  //     }
-  //   })
-  //   .catch((error) => {
-  //     setError(error?.message)
-  //     console.log(error)
-  //   })
   //   const resp = await contactFormHandler(data)
 
   //   if (resp.success === true) {
@@ -76,9 +55,7 @@ function ContactForm({ data }: ContactFormProps) {
   const { submit: onSubmit } = useWeb3forms({
     access_key: accessKey!,
     onSuccess: (msg, data) => {
-      // console.log(data)
       setSuccess(true)
-      // setResult(msg)
       reset()
 
       setTimeout(() => {
@@ -86,9 +63,7 @@ function ContactForm({ data }: ContactFormProps) {
       }, 4000)
     },
     onError: (msg, data) => {
-      // console.log(data)
       setSuccess(false)
-      // setResult(msg)
     },
   })
 
@@ -130,7 +105,7 @@ function ContactForm({ data }: ContactFormProps) {
 
         <div className={classes['form__items']}>
           {!success && (
-            <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data">
+            <form onSubmit={handleSubmit(onSubmit)} encType="multipart/form-data" method="post">
               <input
                 type={'hidden'}
                 {...register('subject', {
@@ -146,6 +121,8 @@ function ContactForm({ data }: ContactFormProps) {
                   display: 'none',
                 }}
               />
+
+              {/* <input type="hidden" {...register('recaptcha_response')} id="recaptchaResponse" /> */}
 
               {fields?.map((field: any, i: number) => {
                 if (field.__component.includes('input')) {
@@ -240,6 +217,25 @@ function ContactForm({ data }: ContactFormProps) {
             </div>
           )}
         </div>
+
+        {/* <Script
+          id="recaptcha-load"
+          strategy="lazyOnload"
+          src={`https://www.google.com/recaptcha/api.js?render=${captcha}`}
+          onLoad={() => {
+            if (window !== undefined && window.grecaptcha) {
+              grecaptcha.ready(function () {
+                grecaptcha
+                  .execute(captcha!, {
+                    action: 'contact',
+                  })
+                  .then(function (token: any) {
+                    setCaptchaToken(token)
+                  })
+              })
+            }
+          }} */}
+        />
       </div>
     </section>
   )

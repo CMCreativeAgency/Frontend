@@ -14,7 +14,7 @@ export default class TitleTween {
   prepare() {
     gsap.set(this.target!, {
       y: '100%',
-      opacity: 1,
+      opacity: 0,
       rotate: '8deg',
       overwrite: true,
       transformOrigin: 'left center',
@@ -26,6 +26,7 @@ export default class TitleTween {
       y: 0,
       delay: this.params.delay ?? 0,
       rotate: 0,
+      opacity: 1,
       stagger: this.params.stagger ?? 0.15,
       duration: 1.4,
       ease: 'power3.out',

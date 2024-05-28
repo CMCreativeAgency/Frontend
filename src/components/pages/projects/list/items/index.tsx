@@ -35,7 +35,7 @@ function ProjectsListItems({ items }: ProjectsListItemsProps) {
   }, [searchParams])
 
   return (
-    <div className={classes['list-items']}>
+    <div className={classes['list-items']} data-enter={`{'tween': 'opacity', 'delay': '.4'}`}>
       {projects.length && (
         <ul>
           {projects?.map((project) => (
