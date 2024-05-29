@@ -180,6 +180,14 @@ export function AnimationsProvider({ children }: AnimationsProps) {
     return () => window.removeEventListener('customRouteChange', customRouteChange)
   }, [pathname])
 
+  useEffect(() => {
+    if (isBack) {
+      setTimeout(() => {
+        refresh()
+      }, 400)
+    }
+  }, [isBack])
+
   const context = {
     refresh: refresh,
     initAnimations: initAnimations,

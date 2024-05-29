@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 
 function RootLayout({ children }: { children: any }) {
   return (
-    <html lang="en" className='loader hidden'>
+    <html lang="en" className="loader hidden">
       <body>
         <FontsLocal />
         {children}

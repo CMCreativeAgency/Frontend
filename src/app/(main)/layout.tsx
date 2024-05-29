@@ -27,7 +27,7 @@ async function MainLayout({ children }: { children: any }) {
               />
               <AnimationsProvider>
                 <main>
-                  {children}
+                  <ScrollToTop>{children}</ScrollToTop>
                   <Footer
                     menu={layoutData.menu}
                     socials={layoutData.socials}

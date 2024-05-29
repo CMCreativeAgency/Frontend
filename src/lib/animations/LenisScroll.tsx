@@ -6,6 +6,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 import { useLoaderContext } from '../context/use-loader'
 import useDetectBackButton from '../hooks/use-backbutton'
+import { usePathname } from 'next/navigation'
 
 // context
 // ...
@@ -21,6 +22,7 @@ export default function LenisScrollProvider({ children }: LenisScrollProps) {
   const [lenis, setLenis] = useState<any>(null)
   const { isLoaded }: any = useLoaderContext()
   const isBack = useDetectBackButton()
+  const pathname = usePathname()
 
   useEffect(() => {
     if (!isLoaded) {
@@ -59,12 +61,15 @@ export default function LenisScrollProvider({ children }: LenisScrollProps) {
   }, [isLoaded])
 
   useEffect(() => {
-    if (isBack) {
-      lenis?.scrollTo(0, {
-        immediate: true,
-      })
+    lenis?.scrollTo(0, {
+      immediate: true,
+    })
+    window.scrollTo(0, 0)
+
+    if (lenis?.isStopped) {
+      lenis?.start()
     }
-  }, [isBack])
+  }, [pathname])
 
   const context = lenis
 

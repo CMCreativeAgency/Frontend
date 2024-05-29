@@ -1,5 +1,6 @@
 'use client'
 import { createContext, useContext, useEffect, useState } from 'react'
+import useDisableBackButton from '../hooks/use-disableback'
 
 export const BreakpointsContext = createContext({})
 
@@ -9,6 +10,7 @@ interface BreakpointsContextProviderProps {
 
 export default function BreakpointsContextProvider({ children }: BreakpointsContextProviderProps) {
   const [device, setDevice] = useState<string>()
+  useDisableBackButton()
 
   useEffect(() => {
     function resizeHandler() {

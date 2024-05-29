@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLenisContext } from '@/lib/animations/LenisScroll'
-import useDetectBackButton from '@/lib/hooks/use-backbutton'
+// import useDetectBackButton from '@/lib/hooks/use-backbutton'
 
 function SharedServices({ data }: SharedServicesProps) {
   const { services } = data
@@ -18,7 +18,7 @@ function SharedServices({ data }: SharedServicesProps) {
   const countRef = useRef<HTMLSpanElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const lenis: any = useLenisContext()
-  const isBack = useDetectBackButton()
+  // const isBack = useDetectBackButton()
   const stRef = useRef<any>()
 
   useIsomorphicLayoutEffect(() => {

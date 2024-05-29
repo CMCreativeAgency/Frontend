@@ -11,7 +11,7 @@ function ServiceHero({ data }: ServiceHeroProps) {
       <Img imageData={featuredImage} pclass="mw-m" aspectMobile="167.4" />
 
       <div className="wrapper">
-        <h1 className="upper" dangerouslySetInnerHTML={{ __html: `${heading}` }}></h1>
+        <h1 data-enter={`{'tween': 'opacity', 'delay': '.1'}`} className="upper" dangerouslySetInnerHTML={{ __html: `${heading}` }}></h1>
 
         <Line className="orange" />
 

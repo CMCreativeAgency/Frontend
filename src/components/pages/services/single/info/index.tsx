@@ -3,7 +3,7 @@ import { ServiceInfoProps } from '@/lib/types/pages'
 import classes from './index.module.scss'
 import Img from '@/components/ui/media/image'
 import { useIsomorphicLayoutEffect } from '@/lib/context/use-isomorphic-layout-effect'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
@@ -11,6 +11,7 @@ import { useBreakpointsContext } from '@/lib/context/use-breakpoints'
 import { useLenisContext } from '@/lib/animations/LenisScroll'
 
 function ServiceInfo({ data }: ServiceInfoProps) {
+  const [isEnabled, setIsEnabled] = useState(false)
   const { items, image } = data
   const ref = useRef<HTMLElement>(null)
   const linesRef = useRef<HTMLSpanElement>(null)
@@ -19,6 +20,8 @@ function ServiceInfo({ data }: ServiceInfoProps) {
   const lenis: any = useLenisContext()
 
   useIsomorphicLayoutEffect(() => {
+    if (!isEnabled) return
+
     gsap.registerPlugin(ScrollTrigger, SplitText)
 
     const ctx = gsap.context(() => {
@@ -28,7 +31,7 @@ function ServiceInfo({ data }: ServiceInfoProps) {
       const items = itemsNode('li')
 
       gsap.set([itemsRef.current, ref.current], {
-        height: items.length * 100 + 100 + 'dvh',
+        height: items.length * 100 + 100 + 'vh',
       })
 
       items?.forEach((item, i) => {
@@ -36,24 +39,25 @@ function ServiceInfo({ data }: ServiceInfoProps) {
         const title = item.querySelector('h2')
         const p = item.querySelector('p')
 
-        const titleSplited = new SplitText(title, {
-          type: 'lines',
-          linesClass: 'lines-wrapper',
-        })
-        const pSplited = new SplitText(p, {
+        const pSplited = new SplitText([p, title], {
           type: 'lines',
           linesClass: 'lines-wrapper',
         })
 
-        new SplitText(titleSplited.lines, {
-          type: 'lines',
-          linesClass: 'lines',
-        })
+        // const titleSplited = new SplitText(title, {
+        //   type: 'lines',
+        //   linesClass: 'lines-wrapper',
+        // })
 
         new SplitText(pSplited.lines, {
           type: 'lines',
           linesClass: 'lines',
         })
+
+        // new SplitText(titleSplited.lines, {
+        //   type: 'lines',
+        //   linesClass: 'lines',
+        // })
 
         tl.set(lines[i], {
           top: 'unset',
@@ -68,8 +72,16 @@ function ServiceInfo({ data }: ServiceInfoProps) {
 
         const allLines = item.querySelectorAll('.lines')
 
+        if (i === 0) {
+          gsap.set([allLines, title], {
+            opacity: 1,
+            y: 0,
+          })
+        }
+
         if (i !== 0) {
-          gsap.set(allLines, {
+          gsap.set([allLines, title], {
+            opacity: 0,
             y: '100%',
           })
         }
@@ -84,12 +96,15 @@ function ServiceInfo({ data }: ServiceInfoProps) {
             if (i !== 0) {
               gsap
                 .fromTo(
-                  allLines,
+                  [allLines, title],
                   {
                     y: 0,
+                    opacity: 1,
                   },
                   {
-                    y: '100%',
+                    y: '50%',
+                    opacity: 0,
+                    stagger: 0.06,
                     duration: 0.8,
                     ease: 'power2.inOut',
                   }
@@ -102,15 +117,19 @@ function ServiceInfo({ data }: ServiceInfoProps) {
             if (items[i - 1]) {
               lenis?.stop()
               const targets = items[i - 1].querySelectorAll('.lines')
+              const title = items[i - 1].querySelector('h2')
 
               gsap
                 .fromTo(
-                  targets,
+                  [targets, title],
                   {
-                    y: '-100%',
+                    y: '-50%',
+                    opacity: 0,
                   },
                   {
                     y: 0,
+                    opacity: 1,
+                    stagger: 0.06,
                     duration: 0.8,
                     ease: 'power2.inOut',
                   }
@@ -127,13 +146,15 @@ function ServiceInfo({ data }: ServiceInfoProps) {
           onEnter: () => {
             if (i !== 0) {
               gsap.fromTo(
-                allLines,
+                [allLines, title],
                 {
-                  y: '100%',
+                  y: '50%',
+                  opacity: 0,
                 },
                 {
                   y: 0,
-                  stagger: 0.1,
+                  opacity: 1,
+                  stagger: 0.06,
                   duration: 0.8,
                   ease: 'power2.inOut',
                 }
@@ -142,17 +163,20 @@ function ServiceInfo({ data }: ServiceInfoProps) {
 
             if (items[i - 1]) {
               const targets = items[i - 1].querySelectorAll('.lines')
+              const title = items[i - 1].querySelector('h2')
               lenis?.stop()
 
               gsap
                 .fromTo(
-                  targets,
+                  [targets, title],
                   {
                     y: 0,
+                    opacity: 1,
                   },
                   {
-                    y: '-100%',
-                    stagger: 0.1,
+                    y: '-50%',
+                    opacity: 0,
+                    stagger: -0.06,
                     duration: 0.8,
                     ease: 'power2.inOut',
                   }
@@ -171,6 +195,10 @@ function ServiceInfo({ data }: ServiceInfoProps) {
     })
 
     return () => ctx.revert()
+  }, [isEnabled, device])
+
+  useEffect(() => {
+    setIsEnabled(true)
   }, [device])
 
   return (
