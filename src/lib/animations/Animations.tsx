@@ -9,7 +9,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
 
 import VerticalTween from './tweens/Vertical'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { gsapSplit } from './gsap/gsap-split'
 import MediaParallax from './parallax/MediaParallax'
 import FreeParallax from './parallax/FreeParallax'
@@ -19,6 +19,7 @@ import TitleTween from './tweens/Title'
 import { useLoaderContext } from '../context/use-loader'
 import TweenOpacity from './tweens/Opacity'
 import { useBreakpointsContext } from '../context/use-breakpoints'
+import useDetectBackButton from '../hooks/use-backbutton'
 
 interface AnimationsProps {
   children: React.ReactElement
@@ -56,9 +57,11 @@ const Tweens: any = {
 export function AnimationsProvider({ children }: AnimationsProps) {
   const prevPathname = useRef<string>()
   const ref = useRef()
+  const router = useRouter()
   const pathname = usePathname()
   const { device }: any = useBreakpointsContext()
   const { isLoaded }: any = useLoaderContext()
+  const isBack = useDetectBackButton()
 
   // init animations
   // ...

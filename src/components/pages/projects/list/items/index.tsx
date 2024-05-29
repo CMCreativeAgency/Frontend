@@ -6,6 +6,7 @@ import ProjectItem from '@/components/articles/project'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { getProjects } from '@/lib/strapi/strapi-fetch'
+import { useAnimationsContext } from '@/lib/animations/Animations'
 
 interface ProjectsListItemsProps {
   items: {
@@ -19,10 +20,15 @@ interface ProjectsListItemsProps {
 function ProjectsListItems({ items }: ProjectsListItemsProps) {
   const [projects, setProjects] = useState(items)
   const searchParams = useSearchParams()
+  const { refresh } = useAnimationsContext()
 
   async function updateProducts(params: any) {
     const { data } = await getProjects(params)
     setProjects(data)
+
+    setTimeout(() => {
+      refresh()
+    }, 200)
   }
 
   useEffect(() => {

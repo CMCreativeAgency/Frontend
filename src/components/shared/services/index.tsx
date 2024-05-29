@@ -5,10 +5,11 @@ import clsx from 'clsx'
 import ServicesItem from './item'
 import Link from 'next/link'
 import { useIsomorphicLayoutEffect } from '@/lib/context/use-isomorphic-layout-effect'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLenisContext } from '@/lib/animations/LenisScroll'
+import useDetectBackButton from '@/lib/hooks/use-backbutton'
 
 function SharedServices({ data }: SharedServicesProps) {
   const { services } = data
@@ -17,6 +18,8 @@ function SharedServices({ data }: SharedServicesProps) {
   const countRef = useRef<HTMLSpanElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const lenis: any = useLenisContext()
+  const isBack = useDetectBackButton()
+  const stRef = useRef<any>()
 
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -44,7 +47,7 @@ function SharedServices({ data }: SharedServicesProps) {
           ease: 'none',
         })
 
-        ScrollTrigger.create({
+        stRef.current = ScrollTrigger.create({
           trigger: item,
           // markers: true,
           start: () => (i === 0 ? 'top top' : `top+=${(i - 1) * window.innerHeight} top`),

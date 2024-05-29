@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { getPosts } from '@/lib/strapi/strapi-fetch'
 import PostItem from '@/components/articles/post'
+import { useAnimationsContext } from '@/lib/animations/Animations'
 
 interface NewsListItemsProps {
   items: {
@@ -20,10 +21,15 @@ interface NewsListItemsProps {
 function NewsListItems({ items }: NewsListItemsProps) {
   const [posts, setPosts] = useState(items)
   const searchParams = useSearchParams()
+  const { refresh } = useAnimationsContext()
 
   async function updatePosts(params: any) {
     const { data } = await getPosts(params)
     setPosts(data)
+
+    setTimeout(() => {
+      refresh()
+    }, 200)
   }
 
   useEffect(() => {
