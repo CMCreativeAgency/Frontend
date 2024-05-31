@@ -10,6 +10,7 @@ interface ScrollingTextProps {
   text: string
   count?: number
   speed?: number
+  index?: number
   reversed?: boolean
   velocity?: boolean
   className?: string
@@ -23,6 +24,7 @@ function ScrollingText({
   text,
   speed,
   count,
+  index,
   reversed,
   velocity,
   className,
@@ -33,10 +35,9 @@ function ScrollingText({
 }: ScrollingTextProps) {
   const countArr = useRef(Array.from({ length: count || 3 }, (v, i) => i))
   const ref = useRef<HTMLDivElement>(null)
-  const ctx = useRef<any>()
   const st = useRef<any>()
   const tlRef = useRef<any>()
-  const to = useRef<any>()
+  const toRef = useRef<any>()
   const clamp = gsap.utils.clamp(-30, 30)
   const mapper = gsap.utils.mapRange(-30, 30, -30, 30)
 
@@ -44,7 +45,7 @@ function ScrollingText({
     let to: any
     gsap.registerPlugin(ScrollTrigger)
 
-    ctx.current = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const targets = ref.current?.children
 
       const tl = horizontalLoop(targets, {
@@ -56,19 +57,30 @@ function ScrollingText({
       tlRef.current = tl
 
       if (scroll) {
+        tl.pause()
         st.current = gsap.timeline({
           scrollTrigger: {
             trigger: trigger || ref.current,
             start: () => 'top bottom',
             end: () => 'bottom top',
-            onEnter: () => (reversed ? tl.reverse() : tl.play()),
-            onLeave: () => tl.pause(),
-            onEnterBack: () => (reversed ? tl.reverse() : tl.play()),
-            onLeaveBack: () => tl.pause(),
+            onEnter: () => {
+              reversed ? tl.reverse() : tl.play()
+            },
+            onLeave: () => {
+              tl.pause()
+            },
+            onEnterBack: () => {
+              reversed ? tl.reverse() : tl.play()
+            },
+            onLeaveBack: () => {
+              tl.pause()
+            },
           },
         })
 
-        st.current?.scrollTrigger?.refresh()
+        // setTimeout(() => {
+        //   st.current?.scrollTrigger?.refresh()
+        // }, 200)
       }
 
       return () => st.current?.revert()
@@ -84,18 +96,18 @@ function ScrollingText({
     window.addEventListener('resize', resizeHandler)
 
     return () => {
-      window.removeEventListener('reszie', resizeHandler)
-      ctx.current.revert()
+      ctx.revert()
+      window.removeEventListener('resize', resizeHandler)
     }
   }, [trigger])
 
   useEffect(() => {
     if (paused) {
-      to.current = setTimeout(() => {
+      toRef.current = setTimeout(() => {
         tlRef.current.pause()
       }, 600)
     } else {
-      clearTimeout(to.current)
+      clearTimeout(toRef.current)
       tlRef.current.play()
     }
 
@@ -114,6 +126,10 @@ function ScrollingText({
           })
         },
       })
+    }
+
+    return () => {
+      clearTimeout(toRef.current)
     }
   }, [paused])
 

@@ -14,7 +14,7 @@ function NavColor({ color }: NavColorProps) {
     set.color(color)
   }, [color])
 
-  return <></>
+  return null
 }
 
 export default NavColor

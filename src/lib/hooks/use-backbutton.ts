@@ -1,11 +1,12 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { useLenis } from 'lenis/react'
 
-const useDetectBackButton = (): boolean => {
+const useDetectBackButton = () => {
+  const lenis = useLenis()
   const pathname = usePathname()
   const historyRef = useRef<string[]>([])
-  const [isBack, setIsBack] = useState(false)
 
   useEffect(() => {
     const currentPath = pathname
@@ -21,11 +22,14 @@ const useDetectBackButton = (): boolean => {
 
       if (history.includes(currentPath)) {
         // Backward navigation
-        setIsBack(true)
+
         history.pop()
       } else {
         // Forward navigation
-        setIsBack(false)
+        lenis?.scrollTo(0, {
+          immediate: true,
+        })
+        window.scrollTo(0, 0)
         history.push(currentPath)
       }
     } else {
@@ -35,8 +39,6 @@ const useDetectBackButton = (): boolean => {
 
     historyRef.current = history
   }, [pathname])
-
-  return isBack
 }
 
 export default useDetectBackButton

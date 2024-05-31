@@ -5,25 +5,21 @@ import clsx from 'clsx'
 import ServicesItem from './item'
 import Link from 'next/link'
 import { useIsomorphicLayoutEffect } from '@/lib/context/use-isomorphic-layout-effect'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useLenisContext } from '@/lib/animations/LenisScroll'
-// import useDetectBackButton from '@/lib/hooks/use-backbutton'
+import { useLenis } from 'lenis/react'
+gsap.registerPlugin(ScrollTrigger)
 
 function SharedServices({ data }: SharedServicesProps) {
   const { services } = data
-  const itemsRef = useRef<HTMLDivElement>(null)
-  const lineRef = useRef<HTMLSpanElement>(null)
-  const countRef = useRef<HTMLSpanElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const lenis: any = useLenisContext()
-  // const isBack = useDetectBackButton()
-  const stRef = useRef<any>()
+  const lenis = useLenis()
+  const stRef = useRef<any>(null)
+  const lineRef = useRef<HTMLSpanElement>(null)
+  const itemsRef = useRef<HTMLDivElement>(null)
 
   useIsomorphicLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
     const ctx = gsap.context(() => {
       const itemsNode = gsap.utils.selector(itemsRef)
       const lineNode = gsap.utils.selector(lineRef)
@@ -49,61 +45,12 @@ function SharedServices({ data }: SharedServicesProps) {
 
         stRef.current = ScrollTrigger.create({
           trigger: item,
-          // markers: true,
           start: () => (i === 0 ? 'top top' : `top+=${(i - 1) * window.innerHeight} top`),
           end: () => (i === 0 ? 'bottom top' : `top+=${i * window.innerHeight} top`),
           scrub: 0,
           animation: tl,
-          onLeaveBack: () => {
-            if (i !== 0) {
-              gsap
-                .to(items[i].firstChild, {
-                  height: 0,
-                  duration: 1,
-                  ease: 'power2.inOut',
-                })
-                .then(() => {
-                  lenis?.start()
-                })
-
-              gsap.to(items[i].firstChild?.firstChild!, {
-                y: '30%',
-                duration: 1,
-                ease: 'power2.inOut',
-              })
-
-              // gsap.to(countRef.current, {
-              //   textContent: i,
-              //   snap: { textContent: 1 },
-              //   duration: 0.4,
-              //   ease: 'power2.inOut',
-              // })
-            }
-
-            if (items[i - 1]) {
-              setActiveIndex(i - 1)
-              lenis?.stop()
-
-              gsap.to(items[i - 1].firstChild, {
-                y: 0,
-                duration: 1,
-                ease: 'power2.inOut',
-              })
-
-              gsap.to(lines[i - 1], {
-                opacity: 1,
-              })
-            }
-          },
           onEnter: () => {
             setActiveIndex(i)
-
-            // gsap.to(countRef.current, {
-            //   textContent: `0${i + 1}`,
-            //   snap: { textContent: 1 },
-            //   duration: 0.4,
-            //   ease: 'power2.inOut',
-            // })
 
             if (i !== 0) {
               lenis?.stop()
@@ -143,12 +90,50 @@ function SharedServices({ data }: SharedServicesProps) {
               })
             }
           },
+          onLeaveBack: () => {
+            if (i !== 0) {
+              gsap
+                .to(items[i].firstChild, {
+                  height: 0,
+                  duration: 1,
+                  ease: 'power2.inOut',
+                })
+                .then(() => {
+                  lenis?.start()
+                })
+
+              gsap.to(items[i].firstChild?.firstChild!, {
+                y: '30%',
+                duration: 1,
+                ease: 'power2.inOut',
+              })
+            }
+
+            if (items[i - 1]) {
+              setActiveIndex(i - 1)
+              lenis?.stop()
+
+              gsap.to(items[i - 1].firstChild, {
+                y: 0,
+                duration: 1,
+                ease: 'power2.inOut',
+              })
+
+              gsap.to(lines[i - 1], {
+                opacity: 1,
+              })
+            }
+          },
         })
       })
     })
 
-    return () => ctx.revert()
-  }, [lenis])
+    ScrollTrigger.refresh()
+
+    return () => {
+      ctx.revert()
+    }
+  }, [])
 
   return (
     <section className={clsx(classes['services'], 'bg-black')}>

@@ -2,7 +2,6 @@
 import { useEffect, useRef } from 'react'
 import classes from './index.module.scss'
 import gsap from 'gsap'
-import { useLenisContext } from '@/lib/animations/LenisScroll'
 
 interface LoaderProps {
   setState: any
@@ -13,7 +12,6 @@ function Loader({ setState }: LoaderProps) {
   const loaderRef = useRef<HTMLDivElement>(null)
   const numRef = useRef<HTMLSpanElement>(null)
   const tlRef = useRef(gsap.timeline({ paused: true }))
-  const lenis = useLenisContext()
 
   useEffect(() => {
     window.scrollTo(0, 0)

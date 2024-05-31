@@ -1,83 +1,87 @@
 'use client'
-
-import Lenis from '@studio-freight/lenis'
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
-import gsap from 'gsap'
-import ScrollTrigger from 'gsap/dist/ScrollTrigger'
-import { useLoaderContext } from '../context/use-loader'
-import useDetectBackButton from '../hooks/use-backbutton'
+import { ReactLenis, useLenis } from 'lenis/react'
 import { usePathname } from 'next/navigation'
-
-// context
-// ...
-export const LenisScrollContext = createContext({})
+import { useEffect } from 'react'
+import useDetectBackButton from '../hooks/use-backbutton'
 
 interface LenisScrollProps {
   children: React.ReactNode
 }
 
-// provider
-// ...
-export default function LenisScrollProvider({ children }: LenisScrollProps) {
-  const [lenis, setLenis] = useState<any>(null)
-  const { isLoaded }: any = useLoaderContext()
-  const isBack = useDetectBackButton()
+function LenisScrollProvider({ children }: LenisScrollProps) {
+  const lenis = useLenis()
   const pathname = usePathname()
+  useDetectBackButton()
 
   useEffect(() => {
-    if (!isLoaded) {
-      window.scrollTo(0, 0)
-      return
-    }
-    document.documentElement.classList.remove('hidden')
-    let mm = gsap.matchMedia()
-
-    mm.add('(min-width: 1023.99px)', () => {
-      gsap.registerPlugin(ScrollTrigger)
-
-      const lenis = new Lenis({
-        lerp: 0.1,
-        // duration: 0.65,
-        // easing: (x) => (x === 1 ? 1 : 1 - Math.pow(2, -10 * x)),
-        // wheelMultiplier: 1.75,
-        wheelMultiplier: 1.55,
-        // normalizeWheel: true,
-      })
-
-      function raf(time: number) {
-        lenis.raf(time)
-        requestAnimationFrame(raf)
-      }
-
-      lenis.on('scroll', ScrollTrigger.update)
-
-      const rafData = requestAnimationFrame(raf)
-
-      setLenis(lenis)
-      return () => cancelAnimationFrame(rafData)
-    })
-
-    return () => mm.revert()
-  }, [isLoaded])
-
-  useEffect(() => {
-    lenis?.scrollTo(0, {
-      immediate: true,
-    })
-    window.scrollTo(0, 0)
-
-    if (lenis?.isStopped) {
-      lenis?.start()
-    }
+    if (lenis?.isStopped) lenis.start()
   }, [pathname])
 
-  const context = lenis
-
-  return <LenisScrollContext.Provider value={context}>{children}</LenisScrollContext.Provider>
+  return (
+    <ReactLenis root rafPriority={1}>
+      {children}
+    </ReactLenis>
+  )
 }
 
-// use
-// ...
-export const useLenisContext = () => {
-  return useContext(LenisScrollContext)
-}
+export default LenisScrollProvider
+
+// import Lenis from 'lenis'
+// import { createContext, useContext, useEffect, useRef, useState } from 'react'
+// import gsap from 'gsap'
+// import ScrollTrigger from 'gsap/dist/ScrollTrigger'
+// import { useLoaderContext } from '../context/use-loader'
+
+// // context
+// // ...
+// export const LenisScrollContext = createContext({})
+
+// interface LenisScrollProps {
+//   children: React.ReactNode
+// }
+
+// // provider
+// // ...
+// export default function LenisScrollProvider({ children }: LenisScrollProps) {
+//   const [lenis, setLenis] = useState<any>(null)
+//   const { isLoaded }: any = useLoaderContext()
+
+//   useEffect(() => {
+//     gsap.registerPlugin(ScrollTrigger)
+
+//     if (!isLoaded) {
+//       window.scrollTo(0, 0)
+//       return
+//     }
+
+//     const l = new Lenis({
+//       lerp: 0.08,
+//       wheelMultiplier: 1.55,
+//     })
+
+//     l.on('scroll', ScrollTrigger.update)
+
+//     gsap.ticker.add((time) => {
+//       l.raf(time * 1000)
+//     })
+
+//     gsap.ticker.lagSmoothing(0)
+
+//     setLenis(l)
+
+//     return () => {
+//       lenis?.destroy()
+//       setLenis(null)
+//     }
+//   }, [isLoaded])
+
+//   const context = lenis
+
+//   return <LenisScrollContext.Provider value={context}>{children}</LenisScrollContext.Provider>
+// }
+
+// // use
+// // ...
+// export const useLenisContext = () => {
+//   return useContext(LenisScrollContext)
+// }

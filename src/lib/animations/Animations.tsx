@@ -61,7 +61,6 @@ export function AnimationsProvider({ children }: AnimationsProps) {
   const pathname = usePathname()
   const { device }: any = useBreakpointsContext()
   const { isLoaded }: any = useLoaderContext()
-  const isBack = useDetectBackButton()
 
   // init animations
   // ...
@@ -180,13 +179,13 @@ export function AnimationsProvider({ children }: AnimationsProps) {
     return () => window.removeEventListener('customRouteChange', customRouteChange)
   }, [pathname])
 
-  useEffect(() => {
-    if (isBack) {
-      setTimeout(() => {
-        refresh()
-      }, 400)
-    }
-  }, [isBack])
+  // useEffect(() => {
+  //   if (isBack) {
+  //     setTimeout(() => {
+  //       refresh()
+  //     }, 400)
+  //   }
+  // }, [isBack])
 
   const context = {
     refresh: refresh,

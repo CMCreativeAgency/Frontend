@@ -7,7 +7,6 @@ import LenisScrollProvider from '@/lib/animations/LenisScroll'
 import Cursor from '@/components/ui/cursor'
 import { AnimationsProvider } from '@/lib/animations/Animations'
 import LoaderContextProvider from '@/lib/context/use-loader'
-import ScrollToTop from '@/components/ui/scroll-to-top'
 
 async function MainLayout({ children }: { children: any }) {
   const { data: layoutData } = await getLayout()
@@ -27,7 +26,7 @@ async function MainLayout({ children }: { children: any }) {
               />
               <AnimationsProvider>
                 <main>
-                  <ScrollToTop>{children}</ScrollToTop>
+                  {children}
                   <Footer
                     menu={layoutData.menu}
                     socials={layoutData.socials}

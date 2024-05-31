@@ -14,6 +14,8 @@ function ScrollRefresher({ children }: ScrollRefresherProps) {
   const to = useRef<any>()
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+    
     document.fonts.ready.then(() => {
       ScrollTrigger.refresh()
     })

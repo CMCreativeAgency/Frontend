@@ -8,20 +8,17 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import { useBreakpointsContext } from '@/lib/context/use-breakpoints'
-import { useLenisContext } from '@/lib/animations/LenisScroll'
+import { useLenis } from 'lenis/react'
 
 function ServiceInfo({ data }: ServiceInfoProps) {
-  const [isEnabled, setIsEnabled] = useState(false)
   const { items, image } = data
   const ref = useRef<HTMLElement>(null)
   const linesRef = useRef<HTMLSpanElement>(null)
   const itemsRef = useRef<HTMLDivElement>(null)
   const { device }: any = useBreakpointsContext()
-  const lenis: any = useLenisContext()
+  const lenis = useLenis()
 
   useIsomorphicLayoutEffect(() => {
-    if (!isEnabled) return
-
     gsap.registerPlugin(ScrollTrigger, SplitText)
 
     const ctx = gsap.context(() => {
@@ -44,20 +41,10 @@ function ServiceInfo({ data }: ServiceInfoProps) {
           linesClass: 'lines-wrapper',
         })
 
-        // const titleSplited = new SplitText(title, {
-        //   type: 'lines',
-        //   linesClass: 'lines-wrapper',
-        // })
-
         new SplitText(pSplited.lines, {
           type: 'lines',
           linesClass: 'lines',
         })
-
-        // new SplitText(titleSplited.lines, {
-        //   type: 'lines',
-        //   linesClass: 'lines',
-        // })
 
         tl.set(lines[i], {
           top: 'unset',
@@ -195,10 +182,6 @@ function ServiceInfo({ data }: ServiceInfoProps) {
     })
 
     return () => ctx.revert()
-  }, [isEnabled, device])
-
-  useEffect(() => {
-    setIsEnabled(true)
   }, [device])
 
   return (

@@ -33,6 +33,7 @@ function ServicesItem({ slug, title, image, active, index, total }: ServicesItem
         speed={2}
         className="upper display f-medium"
         scroll={false}
+        index={index}
         paused={!active}
         // velocity={true}
       />
