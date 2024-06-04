@@ -78,9 +78,9 @@ function ScrollingText({
           },
         })
 
-        // setTimeout(() => {
-        //   st.current?.scrollTrigger?.refresh()
-        // }, 200)
+        setTimeout(() => {
+          st.current?.scrollTrigger?.refresh()
+        }, 200)
       }
 
       return () => st.current?.revert()

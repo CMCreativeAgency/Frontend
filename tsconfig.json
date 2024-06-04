@@ -31,6 +31,6 @@
     ".next/types/**/*.ts",
     "src/lib/animations/helpers/horizontal-loop.js",
     "src/app/(main)/[slug]"
-  ],
+, "public/scripts/pixel.js"  ],
   "exclude": ["node_modules"]
 }

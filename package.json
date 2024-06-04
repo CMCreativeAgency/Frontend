@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@darkroom.engineering/tempus": "^0.0.46",
+    "@next/third-parties": "^14.2.3",
     "@types/grecaptcha": "^3.0.9",
     "@types/node": "20.10.3",
     "@types/react": "18.2.41",

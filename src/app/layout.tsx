@@ -2,6 +2,8 @@ import '@/styles/critical.scss'
 
 import { Metadata } from 'next'
 import FontsLocal from '@/components/ui/fonts'
+import { GoogleAnalytics } from '@next/third-parties/google'
+import FacebookPixel from '@/components/third-party/pixel'
 
 export const metadata: Metadata = {
   manifest: '/favicon/site.webmanifest',
@@ -30,6 +32,8 @@ function RootLayout({ children }: { children: any }) {
         <FontsLocal />
         {children}
       </body>
+      <FacebookPixel />
+      <GoogleAnalytics gaId="G-VHSVHL8S64" />
     </html>
   )
 }

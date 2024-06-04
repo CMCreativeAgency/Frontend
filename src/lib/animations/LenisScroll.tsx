@@ -1,24 +1,36 @@
 'use client'
+import gsap from 'gsap'
 import { ReactLenis, useLenis } from 'lenis/react'
 import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
-import useDetectBackButton from '../hooks/use-backbutton'
+import { useEffect, useRef } from 'react'
 
 interface LenisScrollProps {
   children: React.ReactNode
 }
 
 function LenisScrollProvider({ children }: LenisScrollProps) {
-  const lenis = useLenis()
-  const pathname = usePathname()
-  useDetectBackButton()
+  const lenisRef = useRef<any>()
 
   useEffect(() => {
-    if (lenis?.isStopped) lenis.start()
-  }, [pathname])
+    function update(time: number) {
+      lenisRef.current?.lenis?.raf(time * 1000)
+    }
+
+    gsap.ticker.add(update)
+
+    return () => {
+      gsap.ticker.remove(update)
+    }
+  })
+  // const lenis = useLenis()
+  // const pathname = usePathname()
+
+  // useEffect(() => {
+  //   if (lenis?.isStopped) lenis.start()
+  // }, [pathname])
 
   return (
-    <ReactLenis root rafPriority={1}>
+    <ReactLenis root ref={lenisRef} autoRaf={false}>
       {children}
     </ReactLenis>
   )

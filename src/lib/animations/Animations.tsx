@@ -1,9 +1,7 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useRef, useState } from 'react'
+import React, { createContext, useContext, useEffect, useRef } from 'react'
 import { useIsomorphicLayoutEffect } from '../context/use-isomorphic-layout-effect'
-
-import { TweenProps } from '../types/animations'
 
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/dist/ScrollTrigger'
@@ -19,7 +17,6 @@ import TitleTween from './tweens/Title'
 import { useLoaderContext } from '../context/use-loader'
 import TweenOpacity from './tweens/Opacity'
 import { useBreakpointsContext } from '../context/use-breakpoints'
-import useDetectBackButton from '../hooks/use-backbutton'
 
 interface AnimationsProps {
   children: React.ReactElement

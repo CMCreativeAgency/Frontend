@@ -26,10 +26,6 @@ const useDetectBackButton = () => {
         history.pop()
       } else {
         // Forward navigation
-        lenis?.scrollTo(0, {
-          immediate: true,
-        })
-        window.scrollTo(0, 0)
         history.push(currentPath)
       }
     } else {
