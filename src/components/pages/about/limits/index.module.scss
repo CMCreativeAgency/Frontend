@@ -41,4 +41,10 @@
       margin-right: rem(115);
     }
   }
+
+  :global .lines-wrapper {
+    @include break-down(tablet) {
+      display: block !important;
+    }
+  }
 }

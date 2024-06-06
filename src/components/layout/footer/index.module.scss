@@ -83,9 +83,14 @@
               text-align: center;
             }
           }
-          &:nth-of-type(2) {
+
+          &:nth-of-type(2),
+          &:nth-of-type(4) {
             font-family: var(--font-regular);
-            margin-right: rem(-10);
+
+            @include break-down(tablet) {
+              margin-left: rem(-10);
+            }
           }
         }
       }
@@ -180,7 +185,7 @@
 
     @include break-up(laptopsmall) {
       width: rem(1290);
-      top: rem(-230);
+      top: rem(-160);
       left: unset;
       right: rem(-300);
       transform: translate(0, 0) rotate(-21deg);
